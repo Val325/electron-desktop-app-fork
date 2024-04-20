@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { HashRouter, Routes, Route, NavLink, Navigate } from 'react-router-dom'
 import './App.css'
+import Home from './home' 
 
 function Main() {
   return (
@@ -18,6 +19,7 @@ function Auth() {
     // Здесь можно добавить логику для проверки логина и пароля
     console.log('Username:', username)
     console.log('Password:', password)
+    <Navigate to="#/home" replace={true} />
   }
   return (
     <div className='App'>
@@ -56,6 +58,7 @@ function App() {
         <HashRouter>
           <Routes>
             <Route path='/' element={<Auth />} />
+            <Route path='/home' element={<Home />} />
           </Routes>
         </HashRouter>
       </header>
