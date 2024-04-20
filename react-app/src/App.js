@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { HashRouter, Routes, Route, NavLink, Navigate } from 'react-router-dom'
+import { HashRouter, Routes, Route, NavLink, Navigate, useNavigate} from 'react-router-dom'
 import './App.css'
 import Home from './home' 
 
@@ -14,12 +14,13 @@ function Main() {
 function Auth() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  let navigate = useNavigate();
 
   const handleLogin = () => {
     // Здесь можно добавить логику для проверки логина и пароля
-    console.log('Username:', username)
-    console.log('Password:', password)
-    <Navigate to="#/home" replace={true} />
+    console.log('Username:', username);
+    console.log('Password:', password);
+    navigate("/home");
   }
   return (
     <div className='App'>
