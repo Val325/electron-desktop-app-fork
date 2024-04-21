@@ -29,6 +29,45 @@ a{
 .App-link {
   color: #61dafb;
 }
+.Home-main {
+  background-color: #dcdcdc;
+  display: flex;
+  width: 90vw;
+  height: 90vh;
+  color: black;
+  align-content: space-between;
+}
+.Home-left {
+  width: 20%; 
+}
+.Home-left > div {
+  padding: 5px;
+}
+.Home-right {
+  width: 80%;
+}
+.Tasks-staff{
+
+}
+.Tasks-staff-create{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+}
+.Tasks-staff-create > div{
+  padding: 10px;
+}
+.Task-white {
+  background-color: white;
+  height: 80%;
+  width: 95%;
+}
+h5{
+    text-align: left;
+    padding: 0px;
+    margin: 0px;
+}
 
 @keyframes App-logo-spin {
   from {
