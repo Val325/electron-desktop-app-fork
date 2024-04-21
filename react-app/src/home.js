@@ -1,18 +1,29 @@
+import React, { useState } from 'react'
+
 function Home() {
+  const [isClickTask, setClickTask] = useState(false);
+  const [isClickStaff, setClickStaff] = useState(false);  
+  const [isClickTaskCreate, setClickTaskCreate] = useState(false);  
+  const [isClickCreate, setClickCreate] = useState(false);  
+
   const Tasks = () => {
     console.log("Tasks!")
+    setClickTask(true)
   };
 
   const Staff = () => {
     console.log("Staff!")
+    setClickStaff(true)
   };
 
   const TasksCreate = () => {
     console.log("TasksCreate!")
+    setClickTaskCreate(true)
   };
 
   const Create = () => {
     console.log("Create!")
+    setClickCreate(true)
   };
 
   return (
@@ -32,7 +43,14 @@ function Home() {
                 <div><button onClick={Create}>Create</button></div>
                 
             </div>
-            <div className='Task-white'>White</div>
+            <div className='Task-white'>White
+                
+                {isClickTask && <div>Click Task</div>}
+                {isClickStaff && <div>Click Staff</div>}
+                {isClickTaskCreate && <div>Click TaskCreate</div>}
+                {isClickCreate && <div>Click Create</div>}
+            
+            </div>
         </div>
       </div>
     </div>
