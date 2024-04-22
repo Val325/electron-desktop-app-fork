@@ -16,7 +16,7 @@ a{
   color: white;
 }
 .App-header {
-  background-color: #282c34;
+  background-color: rgb(86, 86, 86);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -52,11 +52,13 @@ a{
 .Tasks-staff-create{
   display: flex;
   flex-direction: row;
-  justify-content: center;
-
+  justify-content: start;
+  font-weight: bold;
 }
 .Tasks-staff-create > div{
-  padding: 10px;
+  margin: 8px;
+  padding: 4px;
+  background-color: rgb(168, 166, 166);
 }
 .Task-white {
   background-color: white;
