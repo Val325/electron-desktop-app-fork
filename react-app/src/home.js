@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import CreateTask from './createTask' 
 
 function Home() {
   const [isClickTask, setClickTask] = useState(false);
@@ -28,7 +29,7 @@ function Home() {
 
   return (
     <div>
-      <h5>home page</h5>
+      
       <div className='Home-main'>
         <div className='Home-left'>
             <div>Home left</div>
@@ -47,7 +48,7 @@ function Home() {
                 
                 {isClickTask && <div>Click Task</div>}
                 {isClickStaff && <div>Click Staff</div>}
-                {isClickTaskCreate && <div>Click TaskCreate</div>}
+                {isClickTaskCreate && CreateTask()}
                 {isClickCreate && <div>Click Create</div>}
             
             </div>

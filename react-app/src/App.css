@@ -32,8 +32,8 @@ a{
 .Home-main {
   background-color: #dcdcdc;
   display: flex;
-  width: 90vw;
-  height: 90vh;
+  width: 100vw;
+  height: 100vh;
   color: black;
   align-content: space-between;
 }
@@ -45,9 +45,28 @@ a{
 }
 .Home-right {
   width: 80%;
+  height: auto;
 }
 .Tasks-staff{
 
+}
+.Create-task-header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.Create-task-header > div{
+  margin: 10px;
+}
+.Create-task-header {
+  border-bottom: 2px solid gray;
+}
+.Create-task{
+  background-color: rgb(217, 217, 217);
+  margin: 5px;
+  padding: 15px;
+  width: 98%;
+  height: 81vh;
 }
 .Tasks-staff-create{
   display: flex;
@@ -60,10 +79,36 @@ a{
   padding: 4px;
   background-color: rgb(168, 166, 166);
 }
+.Create-task-colums {
+  display: flex;
+  justify-content: space-around;
+}
 .Task-white {
   background-color: white;
-  height: 80%;
-  width: 95%;
+  height: 89%;
+  width: 100%;
+}
+.Create-task-left {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  padding: 10px;
+}
+.Create-task-right{
+  display: flex;
+  flex-direction: column; 
+  width: 30%;
+  padding: 10px;
+
+}
+.Create-task-right > div {
+  padding-right: 200px;
+}
+.Create-task-left > div, .Create-task-right > div{
+  border-bottom: 2px solid gray;
+}
+.Create-task-name {
+  font-weight: bold;
 }
 button, input[type="submit"], input[type="reset"] {
 	background: none;
