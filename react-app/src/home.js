@@ -9,21 +9,33 @@ function Home() {
     
   const Tasks = () => {
     console.log("Tasks!")
+    setClickCreate(false)
+    setClickTaskCreate(false)
+    setClickStaff(false)
     setClickTask(true)
   };
 
   const Staff = () => {
     console.log("Staff!")
+    setClickTask(false)
+    setClickCreate(false)
+    setClickTaskCreate(false)
     setClickStaff(true)
   };
 
   const TasksCreate = () => {
     console.log("TasksCreate!")
+    setClickTask(false)
+    setClickStaff(false)
+    setClickCreate(false)
     setClickTaskCreate(true)
   };
 
   const Create = () => {
     console.log("Create!")
+    setClickTask(false)
+    setClickStaff(false)
+    setClickTaskCreate(false)
     setClickCreate(true)
   };
 
@@ -48,7 +60,7 @@ function Home() {
                 
                 {isClickTask && <div>Click Task</div>}
                 {isClickStaff && <div>Click Staff</div>}
-                {CreateTask()}
+                {<CreateTask render={isClickTaskCreate} />}
                 {isClickCreate && <div>Click Create</div>}
             
             </div>

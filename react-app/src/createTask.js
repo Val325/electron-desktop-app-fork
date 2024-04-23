@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-function CreateTask() {
+function CreateTask(props) {
 
     const [name, setName] = useState("");    
     const [statusVal, setStatus] = useState("");
@@ -16,15 +16,17 @@ function CreateTask() {
         console.log("deadline: ", deadline)
         console.log("deskription: ", deskription)
         console.log("templ: ", templ)
+        console.log("Is render: ", props.render)
         //Здесь отправить http запрос к серверу
     };
 
     return (
     <div>
+        { props.render &&
         <div className='Create-task'>
             <div className='Create-task-header'>
                 <div className='Create-task-name'>Create Task</div>
-                <div className='Create-task-btn'><button onClick={TasksCreateButton}>Create button</button></div>
+                <div className='Create-task-btn'><button onClick={TasksCreateButton}>Create</button></div>
             </div>
             <div className='Create-task-colums'>
                 
@@ -42,6 +44,7 @@ function CreateTask() {
             
             </div>
         </div> 
+        }
     </div>
     )
 }
