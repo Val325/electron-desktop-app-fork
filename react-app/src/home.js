@@ -6,7 +6,7 @@ function Home() {
   const [isClickStaff, setClickStaff] = useState(false);  
   const [isClickTaskCreate, setClickTaskCreate] = useState(false);  
   const [isClickCreate, setClickCreate] = useState(false);  
-
+    
   const Tasks = () => {
     console.log("Tasks!")
     setClickTask(true)
@@ -48,7 +48,7 @@ function Home() {
                 
                 {isClickTask && <div>Click Task</div>}
                 {isClickStaff && <div>Click Staff</div>}
-                {isClickTaskCreate && CreateTask()}
+                {CreateTask()}
                 {isClickCreate && <div>Click Create</div>}
             
             </div>
