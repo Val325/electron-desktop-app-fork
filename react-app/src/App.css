@@ -101,11 +101,14 @@ a{
   padding: 10px;
 
 }
-.Create-task-right > div {
-  padding-right: 200px;
-}
-.Create-task-left > div, .Create-task-right > div{
+
+.Create-task-left > input, .Create-task-right > input{
+  border-top: 0px solid gray;
+  border-left: 0px solid gray;
+  border-right: 0px solid gray;
   border-bottom: 2px solid gray;
+  margin: 20px;
+  padding: 10px;
 }
 .Create-task-name {
   font-weight: bold;
