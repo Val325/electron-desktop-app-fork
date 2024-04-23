@@ -101,7 +101,14 @@ a{
   padding: 10px;
 
 }
-
+.Header-Staff {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 2px solid gray;
+}
+.Header-Staff > div{
+  padding: 10px;
+}
 .Create-task-left > input, .Create-task-right > input{
   border-top: 0px solid gray;
   border-left: 0px solid gray;
