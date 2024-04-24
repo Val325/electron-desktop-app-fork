@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { HashRouter, Routes, Route, NavLink, Navigate, useNavigate} from 'react-router-dom'
 import './App.css'
 import Home from './home' 
@@ -12,14 +12,32 @@ function Main() {
 }
 
 function Auth() {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+  const [usernameStat, setUsername] = useState('')
+  const [passwordStat, setPassword] = useState('')
+  const [stateSend, setSend] = useState(false)
+
   let navigate = useNavigate();
 
   const handleLogin = () => {
     // Здесь можно добавить логику для проверки логина и пароля
-    console.log('Username:', username);
-    console.log('Password:', password);
+    console.log('Username:', usernameStat);
+    console.log('Password:', passwordStat);
+    
+    const url = "http://localhost/aris/sign_in";
+    let body = {
+        username: usernameStat,
+        password: passwordStat
+    }; 
+
+    fetch(url, {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+      },
+      body: JSON.stringify(body),
+    }).then((response) => response.json())
+    .then((data) => console.log(data));
+    
     navigate("/home");
   }
   return (
@@ -31,7 +49,7 @@ function Auth() {
             <input
               type='text'
               id='username'
-              value={username}
+              value={usernameStat}
               onChange={(e) => setUsername(e.target.value)}
               placeholder='Username'
             />
@@ -40,7 +58,7 @@ function Auth() {
             <input
               type='password'
               id='password'
-              value={password}
+              value={passwordStat}
               onChange={(e) => setPassword(e.target.value)}
               placeholder='Password'
             />
