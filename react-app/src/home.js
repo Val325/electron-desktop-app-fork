@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import CreateTask from './createTask' 
 import StaffManagers from './Staffmanagers' 
+import Task from './task'
 
 function Home() {
   const [isClickTask, setClickTask] = useState(false);
@@ -61,8 +62,8 @@ function Home() {
                 
                 {isClickTask && <div>Click Task</div>}
                 {<StaffManagers render={isClickStaff} />}
-                {<CreateTask render={isClickTaskCreate} />}
-                {isClickCreate && <div>Click Create</div>}
+                {<CreateTask render={isClickCreate} />}
+                {<Task render={isClickTask} />}
             
             </div>
         </div>
