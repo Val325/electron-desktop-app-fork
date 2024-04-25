@@ -24,10 +24,22 @@ function Task(props) {
 
   }
 
+
+
     return (
         <div>
              { props.render &&
-                <div>number tasks {taskNum} </div>
+                
+                    tasks.map(task =>
+                        <div key={task.id}>
+                        <p>{task.title}</p>
+                        <p>{task.text}</p>
+                        <p>template: {task.templ}</p>
+                        <p>deadline: {task.deadline}</p>
+                        <p>status: {task.status}</p>
+                        <p>price: {task.price}</p>
+                    </div>)
+                
               }
         </div>
     )
