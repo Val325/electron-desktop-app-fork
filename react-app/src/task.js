@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 function Task(props) {
 
@@ -8,12 +8,13 @@ function Task(props) {
     const GetTasks = () => {
 
     
-        const url = "http://localhost/tasks";
+        const url = "http://localhost:7878/tasks";
 
         fetch(url, {
             method: "GET",
             headers: {
-                'Content-Type': 'application/json;charset=utf-8'
+                'Authorization': 'Bearer 349t4ujh89t4h78349h7',
+                'Content-Type': 'application/json'
             },
         }).then((response) => response.json())
         .then((data) => {
@@ -24,7 +25,22 @@ function Task(props) {
 
   }
 
+    useEffect(() => {
+        const url = "http://localhost:7878/tasks";
 
+        fetch(url, {
+            method: "GET",
+            headers: {
+                'Authorization': 'Bearer 349t4ujh89t4h78349h7',
+                'Content-Type': 'application/json'
+            },
+        }).then((response) => response.json())
+        .then((data) => {
+            console.log(data);
+            setTaskNum(data["task_num"]);
+            setTasks(data["tasks"]);
+        });
+    }, [])
 
     return (
         <div>

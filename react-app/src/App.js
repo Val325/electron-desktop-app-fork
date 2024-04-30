@@ -23,7 +23,7 @@ function Auth() {
     console.log('Username:', usernameStat);
     console.log('Password:', passwordStat);
     
-    const url = "http://localhost/aris/sign_in";
+    const url = "http://127.0.0.1:7878/aris/sign_in";
     let body = {
         username: usernameStat,
         password: passwordStat
@@ -32,7 +32,7 @@ function Auth() {
     fetch(url, {
       method: "POST",
       headers: {
-        'Content-Type': 'application/json;charset=utf-8'
+        "Content-Type": "application/json"
       },
       body: JSON.stringify(body),
     }).then((response) => response.json())

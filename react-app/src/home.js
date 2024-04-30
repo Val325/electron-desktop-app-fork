@@ -60,10 +60,10 @@ function Home() {
             </div>
             <div className='Task-white'>White
                 
-                {isClickTask && <div>Click Task</div>}
+                {<Task render={isClickTask} />}
                 {<StaffManagers render={isClickStaff} />}
                 {<CreateTask render={isClickCreate} />}
-                {<Task render={isClickTask} />}
+                {}
             
             </div>
         </div>
