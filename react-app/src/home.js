@@ -1,14 +1,15 @@
-import React, { useState } from 'react'
+import React, {useEffect , useState} from 'react'
 import CreateTask from './createTask' 
 import StaffManagers from './Staffmanagers' 
 import Task from './task'
 
 function Home() {
+
   const [isClickTask, setClickTask] = useState(false);
   const [isClickStaff, setClickStaff] = useState(false);  
   const [isClickTaskCreate, setClickTaskCreate] = useState(false);  
   const [isClickCreate, setClickCreate] = useState(false);  
-    
+
   const Tasks = () => {
     console.log("Tasks!")
     setClickCreate(false)
@@ -62,8 +63,9 @@ function Home() {
                 
                 {<Task render={isClickTask} />}
                 {<StaffManagers render={isClickStaff} />}
-                {<CreateTask render={isClickCreate} />}
                 {}
+                {<CreateTask render={isClickCreate} idNum={idnum} />}
+
             
             </div>
         </div>

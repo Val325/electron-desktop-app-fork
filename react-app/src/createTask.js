@@ -1,15 +1,37 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 function CreateTask(props) {
-
+    const [id, setId] = useState(0);
     const [name, setName] = useState("");    
     const [statusVal, setStatus] = useState("");
     const [price, setPrice] = useState(0);
     const [deadline, setDeadline] = useState(0); 
     const [deskription, setDeskription] = useState("");
     const [templ, setTempl] = useState(""); 
+    
+    const GetTasks = () => {
+        const url = "http://localhost:7878/tasks";
+        fetch(url, {
+            method: "GET",
+            headers: {
+                'Authorization': 'Bearer 349t4ujh89t4h78349h7',
+                'Content-Type': 'text/plain'
+            },
+        }).then((response) => response.json())
+        .then((data) => {
+            console.log(data);
+            setId(data["task_num"]);
+
+        });
+
+    }
+
+    useEffect(() => {
+        GetTasks()
+    }, [props.render])
 
     const TasksCreateButton = () => {
+        console.log("id: ", id)
         console.log("Name: ", name)
         console.log("statusVal: ", statusVal)
         console.log("price: ", price)
@@ -17,16 +39,19 @@ function CreateTask(props) {
         console.log("deskription: ", deskription)
         console.log("templ: ", templ)
         console.log("Is render: ", props.render)
+
+
         //Здесь отправить http запрос к серверу
         const url = "http://127.0.0.1:7878/tasks";
+        
         let body = {
-            id:1,
-            title: name,
-            text: deskription,
-            templ: templ,
-            deadline: deadline,
-            status: statusVal,
-            price: price
+            "id": id,
+            "title": name,
+            "text": deskription,
+            "templ": templ,
+            "deadline": deadline,
+            "status": statusVal,
+            "price": price
         }; 
 
         fetch(url, {
@@ -37,8 +62,13 @@ function CreateTask(props) {
             },
             body: JSON.stringify(body),
         }).then((response) => response.json())
-        .then((data) => console.log(data));
+        .then((data) => { 
+            console.log(data)
+
+        });
     };
+
+
 
     return (
     <div>

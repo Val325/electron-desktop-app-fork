@@ -6,15 +6,12 @@ function Task(props) {
     const [tasks, setTasks] = useState([]);    
 
     const GetTasks = () => {
-
-    
         const url = "http://localhost:7878/tasks";
-
         fetch(url, {
             method: "GET",
             headers: {
                 'Authorization': 'Bearer 349t4ujh89t4h78349h7',
-                'Content-Type': 'application/json'
+                'Content-Type': 'text/plain'
             },
         }).then((response) => response.json())
         .then((data) => {
@@ -24,30 +21,17 @@ function Task(props) {
         });
 
   }
-
     useEffect(() => {
-        const url = "http://localhost:7878/tasks";
-
-        fetch(url, {
-            method: "GET",
-            headers: {
-                'Authorization': 'Bearer 349t4ujh89t4h78349h7',
-                'Content-Type': 'application/json'
-            },
-        }).then((response) => response.json())
-        .then((data) => {
-            console.log(data);
-            setTaskNum(data["task_num"]);
-            setTasks(data["tasks"]);
-        });
-    }, [])
+        GetTasks()
+    }, [props.render])
 
     return (
         <div>
-             { props.render &&
+             { props.render && 
                 
                     tasks.map(task =>
                         <div key={task.id}>
+                        <p>id: {task.id}</p>
                         <p>{task.title}</p>
                         <p>{task.text}</p>
                         <p>template: {task.templ}</p>
