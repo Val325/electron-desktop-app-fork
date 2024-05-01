@@ -30,7 +30,7 @@ function Task(props) {
              { props.render && 
                 
                     tasks.map(task =>
-                        <div key={task.id}>
+                    <div className='Tasks-container' key={task.id}>
                         <p>id: {task.id}</p>
                         <p>{task.title}</p>
                         <p>{task.text}</p>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 function CreateTask(props) {
-    const [id, setId] = useState(0);
+    //const [id, setId] = useState(0);
     const [name, setName] = useState("");    
     const [statusVal, setStatus] = useState("");
     const [price, setPrice] = useState(0);
@@ -20,7 +20,7 @@ function CreateTask(props) {
         }).then((response) => response.json())
         .then((data) => {
             console.log(data);
-            setId(data["task_num"]);
+            //setId(data["task_num"]);
 
         });
 
@@ -31,7 +31,7 @@ function CreateTask(props) {
     }, [props.render])
 
     const TasksCreateButton = () => {
-        console.log("id: ", id)
+        //console.log("id: ", id)
         console.log("Name: ", name)
         console.log("statusVal: ", statusVal)
         console.log("price: ", price)
@@ -45,7 +45,7 @@ function CreateTask(props) {
         const url = "http://127.0.0.1:7878/tasks";
         
         let body = {
-            "id": id,
+            //"id": id,
             "title": name,
             "text": deskription,
             "templ": templ,

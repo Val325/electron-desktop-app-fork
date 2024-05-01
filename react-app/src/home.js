@@ -64,7 +64,7 @@ function Home() {
                 {<Task render={isClickTask} />}
                 {<StaffManagers render={isClickStaff} />}
                 {}
-                {<CreateTask render={isClickCreate} idNum={idnum} />}
+                {<CreateTask render={isClickCreate} />}
 
             
             </div>

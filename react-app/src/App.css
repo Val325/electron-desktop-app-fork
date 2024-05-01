@@ -50,6 +50,21 @@ a{
 .Tasks-staff{
 
 }
+.Tasks-container{
+  display: flex;
+  flex-direction: column;
+  border: 2px solid gray;
+  border-radius: 12px;
+  padding: 5px;
+  margin: 20px;
+}
+.Tasks-container > p{
+  padding: 0px;
+  margin: 0px;
+  margin-top: 10px;
+  margin-left: 20px;
+  text-align: start;
+}
 .Create-task-header{
   display: flex;
   flex-direction: row;
