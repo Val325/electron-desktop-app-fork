@@ -2,6 +2,7 @@ import React, {useEffect , useState} from 'react'
 import CreateTask from './createTask' 
 import StaffManagers from './Staffmanagers' 
 import Task from './task'
+import TaskId from './OneTask'
 
 function Home() {
 
@@ -63,7 +64,7 @@ function Home() {
                 
                 {<Task render={isClickTask} />}
                 {<StaffManagers render={isClickStaff} />}
-                {}
+                {<TaskId render={isClickTaskCreate} id={0} />}
                 {<CreateTask render={isClickCreate} />}
 
             
