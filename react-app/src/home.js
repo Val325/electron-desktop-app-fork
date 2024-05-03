@@ -6,9 +6,12 @@ import TaskId from './OneTask'
 import { HashRouter, Routes, Route, NavLink, Navigate, useNavigate, useParams} from 'react-router-dom'
 
 function Home(props) {
+  const [isSelectTask, setClickSelectTask] = useState(false);
+  const [isSelectStaff, setClickSelectStaff] = useState(false);  
+
   const [isClickTask, setClickTask] = useState(false);
   const [isClickStaff, setClickStaff] = useState(false);  
-  const [isClickTaskCreate, setClickTaskCreate] = useState(false);  
+  const [isClickTaskCreate, setClickTaskCreate] = useState(true);  
   const [isClickCreate, setClickCreate] = useState(false); 
 
   const Tasks = () => {
