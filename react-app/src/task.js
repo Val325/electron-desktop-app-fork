@@ -30,7 +30,13 @@ function Task(props) {
     useEffect(() => {
         GetTasks()
     }, [props.render])
-
+    /*
+        <p>{task.text}</p>
+        <p>template: {task.templ}</p>
+        <p>deadline: {task.deadline}</p>
+        <p>status: {task.status}</p>
+        <p>price: {task.price}</p>
+     */
     return (
         <div>
              { props.render && 
@@ -39,12 +45,8 @@ function Task(props) {
                     <div className='Tasks-container' key={task.id}>
                         <p>id: {task.id}</p>
                         <p>{task.title}</p>
-                        <p>{task.text}</p>
-                        <p>template: {task.templ}</p>
-                        <p>deadline: {task.deadline}</p>
-                        <p>status: {task.status}</p>
-                        <p>price: {task.price}</p>
-                        <div><button className='button-link'><Link to={"/home/task/" + task.id} >Show task</Link></button></div>
+
+                        <div className='button-link'><button ><Link to={"/home/task/" + task.id} >Show task</Link></button></div>
                     </div>)
                 
               }

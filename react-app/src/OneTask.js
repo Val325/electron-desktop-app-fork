@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { HashRouter, Routes, Route, NavLink, Navigate, useNavigate, useParams} from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 function TaskId(props) {
 
@@ -54,9 +55,9 @@ function TaskId(props) {
                         <p>deadline: {task.deadline}</p>
                         <p>status: {task.status}</p>
                         <p>price: {task.price}</p>
-                    </div>
-                
+                    </div>                
               }
+                <div className='button-link'><button ><Link to={"/home/"} >Back</Link></button></div>
             </div>
         </div>
       </div>
