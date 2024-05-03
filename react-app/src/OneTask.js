@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from 'react'
+import { HashRouter, Routes, Route, NavLink, Navigate, useNavigate, useParams} from 'react-router-dom'
 
 function TaskId(props) {
 
     //const [taskId, setTaskNum] = useState(0);    
     const [task, setTask] = useState([]);    
+    let { id } = useParams();
+
+    useEffect(() => {
+        console.log("reboot page")
+        console.log("id: ", id)
+    }, [id])
 
     const GetTask = () => {
-        const url = "http://localhost:7878/tasks" + "/" + props.id;
+        const url = "http://localhost:7878/tasks" + "/" + id;
         fetch(url, {
             method: "GET",
             headers: {
@@ -18,15 +25,27 @@ function TaskId(props) {
             console.log(data);
             setTask(data)
         });
-
-  }
+    }
     useEffect(() => {
         GetTask()
-    }, [props.render])
+    }, [id])
 
     return (
         <div>
-             { props.render && 
+      <div className='Home-main'>
+        <div className='Home-left'>
+            <div>Home left</div>
+
+            
+        </div>
+        <div className='Home-right'>
+            <div>Home right</div>
+            <div className='Tasks-staff-create'>
+
+                
+            </div>
+            <div className='Task-white'>White
+             { task && 
                     <div className='Tasks-container' key={task.id}>
                         <p>id: {task.id}</p>
                         <p>{task.title}</p>
@@ -38,7 +57,10 @@ function TaskId(props) {
                     </div>
                 
               }
+            </div>
         </div>
+      </div>
+    </div>
     )
 }
 

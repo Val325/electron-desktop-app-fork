@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { HashRouter, Routes, Route, NavLink, Navigate, useNavigate} from 'react-router-dom'
+import { HashRouter, Routes, Route, NavLink, Navigate, useNavigate, useParams} from 'react-router-dom'
 import './App.css'
 import Home from './home' 
+import TaskId from './OneTask'
 
 function Main() {
   return (
@@ -78,6 +79,8 @@ function App() {
           <Routes>
             <Route path='/' element={<Auth />} />
             <Route path='/home' element={<Home />} />
+            <Route path='/home/task/:id' element={<TaskId />} />
+
           </Routes>
         </HashRouter>
       </header>

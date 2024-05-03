@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-
+import { Link } from "react-router-dom";
 function Task(props) {
 
     const [taskNum, setTaskNum] = useState(0);    
@@ -20,7 +20,13 @@ function Task(props) {
             setTasks(data["tasks"]);
         });
 
-  }
+    }
+
+    const ShowTaskId = () => {
+        const url = "http://localhost:7878/tasks";
+
+
+    }
     useEffect(() => {
         GetTasks()
     }, [props.render])
@@ -38,6 +44,7 @@ function Task(props) {
                         <p>deadline: {task.deadline}</p>
                         <p>status: {task.status}</p>
                         <p>price: {task.price}</p>
+                        <div><button className='button-link'><Link to={"/home/task/" + task.id} >Show task</Link></button></div>
                     </div>)
                 
               }

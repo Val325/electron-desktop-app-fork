@@ -3,13 +3,13 @@ import CreateTask from './createTask'
 import StaffManagers from './Staffmanagers' 
 import Task from './task'
 import TaskId from './OneTask'
+import { HashRouter, Routes, Route, NavLink, Navigate, useNavigate, useParams} from 'react-router-dom'
 
-function Home() {
-
+function Home(props) {
   const [isClickTask, setClickTask] = useState(false);
   const [isClickStaff, setClickStaff] = useState(false);  
   const [isClickTaskCreate, setClickTaskCreate] = useState(false);  
-  const [isClickCreate, setClickCreate] = useState(false);  
+  const [isClickCreate, setClickCreate] = useState(false); 
 
   const Tasks = () => {
     console.log("Tasks!")
@@ -61,10 +61,11 @@ function Home() {
                 
             </div>
             <div className='Task-white'>White
-                
+
+
                 {<Task render={isClickTask} />}
                 {<StaffManagers render={isClickStaff} />}
-                {<TaskId render={isClickTaskCreate} id={0} />}
+                {} 
                 {<CreateTask render={isClickCreate} />}
 
             
