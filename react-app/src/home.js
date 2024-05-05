@@ -6,46 +6,86 @@ import TaskId from './OneTask'
 import { HashRouter, Routes, Route, NavLink, Navigate, useNavigate, useParams} from 'react-router-dom'
 
 function Home(props) {
-  const [isSelectTask, setClickSelectTask] = useState(false);
+  const [isSelectTask, setClickSelectTask] = useState(true);
   const [isSelectStaff, setClickSelectStaff] = useState(false);  
 
   const [isClickTask, setClickTask] = useState(false);
   const [isClickStaff, setClickStaff] = useState(false);  
-  const [isClickTaskCreate, setClickTaskCreate] = useState(true);  
-  const [isClickCreate, setClickCreate] = useState(false); 
+  
+  const [isClickTasksCreate, setClickTasksCreate] = useState(false);  
+  const [isClickStaffCreate, setClickStaffCreate] = useState(false); 
 
   const Tasks = () => {
     console.log("Tasks!")
-    setClickCreate(false)
-    setClickTaskCreate(false)
-    setClickStaff(false)
+    setClickSelectStaff(false)
     setClickTask(true)
+    setClickStaff(false)
+    setClickTasksCreate(false)
+    setClickStaffCreate(false)
+    setClickSelectTask(true)
+
   };
 
   const Staff = () => {
     console.log("Staff!")
+    setClickSelectTask(false)
+    setClickSelectStaff(true)
     setClickTask(false)
-    setClickCreate(false)
-    setClickTaskCreate(false)
-    setClickStaff(true)
+    setClickStaff(false)
+    setClickTasksCreate(false)
+    setClickStaffCreate(false)
   };
 
   const TasksCreate = () => {
     console.log("TasksCreate!")
-    setClickTask(false)
-    setClickStaff(false)
-    setClickCreate(false)
-    setClickTaskCreate(true)
+    console.log("isSelectTask ", isSelectTask)
+    if (isSelectTask) {
+        //toggle
+        setClickTasksCreate(true)
+        setClickSelectTask(true)
+
+        // turn off
+        setClickSelectStaff(false)
+        setClickTask(false)
+        setClickStaff(false)
+        setClickStaffCreate(false)
+    }
   };
 
-  const Create = () => {
-    console.log("Create!")
+  const StaffCreate = () => {
+    console.log("StaffCreate!")
+    setClickSelectTask(false)
+    setClickSelectStaff(false)
     setClickTask(false)
     setClickStaff(false)
-    setClickTaskCreate(false)
-    setClickCreate(true)
+    setClickTasksCreate(false)
+    setClickStaffCreate(true)
+  };
+  const TasksShow = () => {
+    console.log("TasksShow!")
+    if (isSelectTask) {
+        //toggle
+        setClickSelectTask(true)
+        setClickTask(true)
+
+        //turn off
+        setClickSelectStaff(false)
+        setClickStaff(false)
+        setClickTasksCreate(false)
+        setClickStaffCreate(false)
+    }
   };
 
+  const StaffShow = () => {
+    console.log("StaffShow!")
+    setClickSelectTask(false)
+    setClickSelectStaff(false)
+    setClickTask(false)
+    setClickStaff(true)
+    setClickTasksCreate(false)
+    setClickStaffCreate(false)
+  };
+    
   return (
     <div>
       
@@ -57,15 +97,15 @@ function Home(props) {
         </div>
         <div className='Home-right'>
             <div className='Tasks-staff-create'>
-                <div><button onClick={TasksCreate}>Tasks</button></div> 
-                <div><button onClick={Create}>Create</button></div>
+                <div><button onClick={TasksShow}>Tasks</button></div> 
+                <div><button onClick={TasksCreate}>Create</button></div>
                 
             </div>
             <div className='Task-white'>
-                {<Task render={isClickTaskCreate} />}
-                {<StaffManagers render={isClickStaff} />}
+                {<Task render={isClickTask} />}
+                {<StaffManagers render={isSelectStaff} />}
                 {} 
-                {<CreateTask render={isClickCreate} />}
+                {<CreateTask render={isClickTasksCreate} />}
 
             
             </div>
