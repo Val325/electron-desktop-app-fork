@@ -57,7 +57,7 @@ function TaskId(props) {
                         <p>price: {task.price}</p>
                     </div>                
               }
-                <div className='button-link'><button ><Link to={"/home/"} >Back</Link></button></div>
+                <button className='button-link'><Link to={"/home/"} >Back</Link></button>
             </div>
         </div>
       </div>
