@@ -105,19 +105,14 @@ function Home(props) {
         </div>
         <div className='Home-right'>
             <div className='Tasks-staff-create'>
-
                 <div><button className={isClickTaskClass} onClick={TasksShow}>Tasks</button></div> 
-
                 <div><button className={isClickCreateClass} onClick={TasksCreate}>Create</button></div>
-                
             </div>
             <div className='Task-white'>
                 {<Task render={isClickTask} />}
                 {<StaffManagers render={isSelectStaff} />}
                 {} 
-                {<CreateTask render={isClickTasksCreate} />}
-
-            
+                {<CreateTask render={isClickTasksCreate} />} 
             </div>
         </div>
       </div>
@@ -126,3 +121,5 @@ function Home(props) {
 }
 
 export default Home
+
+
