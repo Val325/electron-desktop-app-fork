@@ -15,6 +15,9 @@ function Home(props) {
   const [isClickTasksCreate, setClickTasksCreate] = useState(false);  
   const [isClickStaffCreate, setClickStaffCreate] = useState(false); 
 
+  const [isClickTaskClass, setClickTaskClass] = useState("");
+  const [isClickCreateClass, setClickCreateClass] = useState("");
+
   const Tasks = () => {
     console.log("Tasks!")
     setClickSelectStaff(false)
@@ -50,6 +53,8 @@ function Home(props) {
         setClickStaff(false)
         setClickStaffCreate(false)
     }
+    setClickTaskClass("btn")
+    setClickCreateClass("select-btn")
   };
 
   const StaffCreate = () => {
@@ -73,7 +78,10 @@ function Home(props) {
         setClickStaff(false)
         setClickTasksCreate(false)
         setClickStaffCreate(false)
+
     }
+    setClickTaskClass("select-btn")
+    setClickCreateClass("btn")
   };
 
   const StaffShow = () => {
@@ -97,8 +105,10 @@ function Home(props) {
         </div>
         <div className='Home-right'>
             <div className='Tasks-staff-create'>
-                <div><button onClick={TasksShow}>Tasks</button></div> 
-                <div><button onClick={TasksCreate}>Create</button></div>
+
+                <div><button className={isClickTaskClass} onClick={TasksShow}>Tasks</button></div> 
+
+                <div><button className={isClickCreateClass} onClick={TasksCreate}>Create</button></div>
                 
             </div>
             <div className='Task-white'>

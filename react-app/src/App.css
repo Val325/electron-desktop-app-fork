@@ -59,6 +59,9 @@ a:hover, a:visited, a:link, a:active {
 .Tasks-staff{
 
 }
+.select-btn{
+  color: gray;
+}
 .button-link {
   background-color: #04AA6D; /* Green */
   border: none;
@@ -106,6 +109,7 @@ a:hover, a:visited, a:link, a:active {
   width: 98%;
   height: 81vh;
 }
+
 .Tasks-staff-create{
   display: flex;
   background-color: #6A6D6F;
