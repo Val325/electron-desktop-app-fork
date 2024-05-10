@@ -6,7 +6,6 @@ function Task(props) {
 
     const GetTasks = () => {
         const url = "http://localhost:7878/tasks";
-
         fetch(url, {
             method: "GET",
             headers: {

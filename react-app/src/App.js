@@ -3,7 +3,7 @@ import { HashRouter, Routes, Route, NavLink, Navigate, useNavigate, useParams} f
 import './App.css'
 import Home from './home' 
 import TaskId from './OneTask'
-
+import EditTask from './editTask'
 function Main() {
   return (
     <div>
@@ -41,6 +41,7 @@ function Auth() {
     
     navigate("/home");
   }
+
   return (
     <div className='App'>
       <header className='App-header'>
@@ -80,6 +81,7 @@ function App() {
             <Route path='/' element={<Auth />} />
             <Route path='/home' element={<Home />} />
             <Route path='/home/task/:id' element={<TaskId />} />
+            <Route path='/home/task/edit/:id' element={<EditTask render={true} />} />
 
           </Routes>
         </HashRouter>

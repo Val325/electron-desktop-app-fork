@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
+import { HashRouter, Routes, Route, NavLink, Navigate, useNavigate, useParams} from 'react-router-dom'
 
-function CreateStaff(props) {
+function EditTask(props) {
     //const [id, setId] = useState(0);
     const [name, setName] = useState("");    
     const [statusVal, setStatus] = useState("");
@@ -8,33 +9,12 @@ function CreateStaff(props) {
     const [deadline, setDeadline] = useState(0); 
     const [deskription, setDeskription] = useState("");
     const [templ, setTempl] = useState(""); 
+    let { id } = useParams(); 
+    let navigate = useNavigate();
     
-    const GetTasks = () => {
-        const url = "http://localhost:7878/aris";
-        fetch(url, {
-            method: "GET",
-            headers: {
-                'Authorization': 'Bearer 349t4ujh89t4h78349h7',
-                'Content-Type': 'text/plain'
-            },
-        }).then((response) => response.json())
-        .then((data) => {
-            console.log(data);
-            //setId(data["task_num"]);
-
-        });
-
-    }
-
-    useEffect(() => {
-        GetTasks()
-    }, [props.render])
-
-    const TasksCreateButton = () => {
-        //console.log("id: ", id)
-
+    const TasksUpdateButton = () => {
         //Здесь отправить http запрос к серверу
-        const url = "http://127.0.0.1:7878/tasks";
+        const url = "http://127.0.0.1:7878/tasks/" + id;
         
         let body = {
             //"id": id,
@@ -47,7 +27,7 @@ function CreateStaff(props) {
         }; 
 
         fetch(url, {
-            method: "POST",
+            method: "PUT",
             headers: {
                 "Authorization": "Bearer 349t4ujh89t4h78349h7",
                 "Content-Type": "application/json"
@@ -56,20 +36,16 @@ function CreateStaff(props) {
         }).then((response) => response.json())
         .then((data) => { 
             console.log(data)
+            navigate("/home");
 
         });
     };
-
-
 
     return (
     <div>
         { props.render &&
         <div className='Create-task'>
-            <div className='Create-task-header'>
-                <div className='Create-task-name'>Create Task</div>
-                <div className='Create-task-btn'><button onClick={TasksCreateButton}>Create</button></div>
-            </div>
+
             <div className='Create-task-colums'>
                 
                 <div className='Create-task-left'>
@@ -83,6 +59,7 @@ function CreateStaff(props) {
                         <input value={deskription} onChange={e => setDeskription(e.target.value)} placeholder="Deskription" />
                         <input value={templ} onChange={e => setTempl(e.target.value)} placeholder="Templ" />                    
                 </div>
+                <div><button className='button-link-delete' onClick={TasksUpdateButton} >Edit task</button></div>
             
             </div>
         </div> 
@@ -93,5 +70,5 @@ function CreateStaff(props) {
 
 
 
-export default CreateStaff
+export default EditTask
 

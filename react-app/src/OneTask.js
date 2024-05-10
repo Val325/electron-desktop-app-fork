@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { HashRouter, Routes, Route, NavLink, Navigate, useNavigate, useParams} from 'react-router-dom'
 import { Link } from "react-router-dom";
 
+
 function TaskId(props) {
 
     //const [taskId, setTaskNum] = useState(0);    
@@ -51,9 +52,13 @@ function TaskId(props) {
         .then((data) => {
             console.log(data);
             setTask(data)
-        });
+            navigate("/home");
+        }); 
     }
-
+    const EditTask = () => {
+        //<EditTask id={id} />
+        navigate("/home/task/edit/" + id);
+    }
     useEffect(() => {
         GetTask()
     }, [id])
@@ -86,6 +91,8 @@ function TaskId(props) {
               <div className='buttons-link'>
                 <Link to={"/home/"} ><button className='button-link'>Back</button></Link>
                 <div><button className='button-link-delete' onClick={DeleteTask} >Delete task</button></div>
+                <div><button className='button-link-delete' onClick={EditTask} >Edit task</button></div>
+
               </div>
             </div>
         </div>
