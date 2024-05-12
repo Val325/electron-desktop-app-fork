@@ -4,6 +4,7 @@ import StaffManagers from './Staffmanagers'
 import Task from './task'
 import TaskId from './OneTask'
 import CreateUnit from './createUnit'
+import Units from './units'
 import { HashRouter, Routes, Route, NavLink, Navigate, useNavigate, useParams} from 'react-router-dom'
 
 function Home(props) {
@@ -185,7 +186,8 @@ function Home(props) {
             <div className='Task-white'>
                 {<Task render={isClickTask} />}
                 {<StaffManagers render={isSelectStaff} />}
-                {<CreateUnit render={isClickUnitCreate} />} 
+                {<CreateUnit render={isClickUnitCreate} />}
+                {<Units render={isClickUnit} />}
                 {<CreateTask render={isClickTasksCreate} />} 
             </div>
         </div>
