@@ -44,24 +44,25 @@ function EditTask(props) {
     return (
     <div>
         { props.render &&
-        <div className='Create-task'>
+        <div className='Edit-task'>
 
-            <div className='Create-task-colums'>
+            <div className='Edit-task-colums'>
                 
-                <div className='Create-task-left'>
+                <div className='Edit-task-left'>
                         <input value={name} onChange={e => setName(e.target.value)} placeholder="Name" />
                         <input value={statusVal} onChange={e => setStatus(e.target.value)} placeholder="Status" />
                         <input value={price} onChange={e => setPrice(e.target.value)} placeholder="Price" />
                         <input value={deadline} onChange={e => setDeadline(e.target.value)} placeholder="Deadline" />
 
                 </div>
-                <div className='Create-task-right'>
+                <div className='Edit-task-right'>
                         <input value={deskription} onChange={e => setDeskription(e.target.value)} placeholder="Deskription" />
                         <input value={templ} onChange={e => setTempl(e.target.value)} placeholder="Templ" />                    
                 </div>
-                <div><button className='button-link-delete' onClick={TasksUpdateButton} >Edit task</button></div>
+                
             
             </div>
+            <div><button className='button-link-edit' onClick={TasksUpdateButton} >Edit task</button></div>
         </div> 
         }
     </div>

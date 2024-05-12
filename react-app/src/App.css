@@ -90,7 +90,20 @@ a:hover, a:visited, a:link, a:active {
   margin: 10px 10px;
   cursor: pointer;
 }
-
+.button-link-edit {
+  background-color: #f44336;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center !important;
+  width: 200px;
+  height: 70px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 10px;
+  cursor: pointer;
+}
 .Tasks-container{
   display: flex;
   flex-direction: column;
@@ -167,6 +180,41 @@ a:hover, a:visited, a:link, a:active {
   padding: 10px;
 
 }
+.Edit-task{
+  background-color: rgb(217, 217, 217);
+  margin: 5px;
+  padding: 15px;
+  width: 102%;
+  height: 50vh;
+}
+.Edit-task-colums {
+  display: flex;
+  justify-content: space-around;
+}
+.Edit-task-left {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  padding: 10px;
+}
+.Edit-task-right{
+  display: flex;
+  flex-direction: column; 
+  width: 30%;
+  padding: 10px;
+
+}
+
+.Edit-task-left > input, .Edit-task-right > input{
+  width: 200px;
+  border-top: 0px solid gray;
+  border-left: 0px solid gray;
+  border-right: 0px solid gray;
+  border-bottom: 2px solid gray;
+  margin: 20px;
+  padding: 10px;
+}
+
 .Header-Staff {
   display: flex;
   flex-direction: row;

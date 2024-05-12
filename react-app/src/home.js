@@ -3,30 +3,36 @@ import CreateTask from './createTask'
 import StaffManagers from './Staffmanagers' 
 import Task from './task'
 import TaskId from './OneTask'
+import CreateUnit from './createUnit'
 import { HashRouter, Routes, Route, NavLink, Navigate, useNavigate, useParams} from 'react-router-dom'
 
 function Home(props) {
   const [isSelectTask, setClickSelectTask] = useState(true);
   const [isSelectStaff, setClickSelectStaff] = useState(false);  
+  const [isSelectUnit, setClickSelectUnit] = useState(false);
 
   const [isClickTask, setClickTask] = useState(false);
   const [isClickStaff, setClickStaff] = useState(false);  
-  
+  const [isClickUnit, setClickUnit] = useState(false);  
+
   const [isClickTasksCreate, setClickTasksCreate] = useState(false);  
   const [isClickStaffCreate, setClickStaffCreate] = useState(false); 
+  const [isClickUnitCreate, setClickUnitCreate] = useState(false); 
 
   const [isClickTaskClass, setClickTaskClass] = useState("");
   const [isClickCreateClass, setClickCreateClass] = useState("");
 
   const Tasks = () => {
     console.log("Tasks!")
-    setClickSelectStaff(false)
     setClickTask(true)
+    setClickSelectTask(true)
+
+    setClickSelectStaff(false)
     setClickStaff(false)
     setClickTasksCreate(false)
     setClickStaffCreate(false)
-    setClickSelectTask(true)
-
+    setClickSelectUnit(false)
+    setClickUnitCreate(false)
   };
 
   const Staff = () => {
@@ -37,6 +43,22 @@ function Home(props) {
     setClickStaff(false)
     setClickTasksCreate(false)
     setClickStaffCreate(false)
+    setClickSelectUnit(false)
+    setClickUnitCreate(false)
+  };
+
+  const Unit = () => {
+    console.log("Unit!")
+    setClickSelectUnit(true)
+    setClickUnit(true)
+    
+      setClickSelectTask(false)
+    setClickSelectStaff(false)
+    setClickTask(false)
+    setClickStaff(false)
+    setClickTasksCreate(false)
+    setClickStaffCreate(false)
+    setClickUnitCreate(false)
   };
 
   const TasksCreate = () => {
@@ -52,6 +74,9 @@ function Home(props) {
         setClickTask(false)
         setClickStaff(false)
         setClickStaffCreate(false)
+        setClickSelectUnit(false)
+        setClickUnitCreate(false)
+
     }
     setClickTaskClass("btn")
     setClickCreateClass("select-btn")
@@ -65,7 +90,31 @@ function Home(props) {
     setClickStaff(false)
     setClickTasksCreate(false)
     setClickStaffCreate(true)
+    setClickSelectUnit(false)
+    setClickUnitCreate(false)
   };
+
+  const UnitCreate = () => {
+    console.log("UnitCreate!")
+
+    if (isSelectUnit){
+        setClickUnitCreate(true)
+        setClickSelectUnit(true)
+
+        setClickUnit(false)
+
+        //setClickSelectUnit(false)
+        setClickSelectTask(false)
+        setClickSelectStaff(false)
+        setClickTask(false)
+        setClickStaff(false)
+        setClickTasksCreate(false)
+        setClickStaffCreate(false)
+    }
+    setClickTaskClass("btn")
+    setClickCreateClass("select-btn")
+  };
+
   const TasksShow = () => {
     console.log("TasksShow!")
     if (isSelectTask) {
@@ -78,7 +127,7 @@ function Home(props) {
         setClickStaff(false)
         setClickTasksCreate(false)
         setClickStaffCreate(false)
-
+        setClickSelectUnit(false)
     }
     setClickTaskClass("select-btn")
     setClickCreateClass("btn")
@@ -92,6 +141,27 @@ function Home(props) {
     setClickStaff(true)
     setClickTasksCreate(false)
     setClickStaffCreate(false)
+    setClickSelectUnit(false)
+
+  };
+
+  const UnitShow = () => {
+    console.log("UnitShow!")
+    if (isSelectUnit){
+        setClickUnitCreate(false)
+        setClickUnit(true)
+
+        setClickSelectUnit(false)
+        setClickSelectTask(false)
+        setClickSelectStaff(false)
+        setClickTask(false)
+        setClickStaff(false)
+        setClickTasksCreate(false)
+        setClickStaffCreate(false)
+        setClickSelectUnit(true)
+    }
+    setClickTaskClass("select-btn")
+    setClickCreateClass("btn")
   };
     
   return (
@@ -101,17 +171,21 @@ function Home(props) {
         <div className='Home-left'>
             <div><button onClick={Tasks}>Tasks</button></div>
             <div><button onClick={Staff}>Staff</button></div>
+            <div><button onClick={Unit}>Unit</button></div>
             
         </div>
         <div className='Home-right'>
             <div className='Tasks-staff-create'>
-                <div><button className={isClickTaskClass} onClick={TasksShow}>Tasks</button></div> 
-                <div><button className={isClickCreateClass} onClick={TasksCreate}>Create</button></div>
+                {isSelectTask && <div><button className={isClickTaskClass} onClick={TasksShow}>Tasks</button></div>} 
+                {isSelectTask && <div><button className={isClickCreateClass} onClick={TasksCreate}>Create</button></div>}
+                {isSelectUnit && <div><button className={isClickTaskClass} onClick={UnitShow}>Units</button></div>} 
+                {isSelectUnit && <div><button className={isClickCreateClass} onClick={UnitCreate}>Create</button></div>}
+
             </div>
             <div className='Task-white'>
                 {<Task render={isClickTask} />}
                 {<StaffManagers render={isSelectStaff} />}
-                {} 
+                {<CreateUnit render={isClickUnitCreate} />} 
                 {<CreateTask render={isClickTasksCreate} />} 
             </div>
         </div>
