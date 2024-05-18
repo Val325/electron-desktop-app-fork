@@ -26,6 +26,7 @@ function Home(props) {
   const Tasks = () => {
     console.log("Tasks!")
     setClickTask(true)
+    setClickUnit(false)
     setClickSelectTask(true)
 
     setClickSelectStaff(false)
@@ -38,6 +39,7 @@ function Home(props) {
 
   const Staff = () => {
     console.log("Staff!")
+    setClickUnit(false)
     setClickSelectTask(false)
     setClickSelectStaff(true)
     setClickTask(false)
@@ -66,6 +68,8 @@ function Home(props) {
     console.log("TasksCreate!")
     console.log("isSelectTask ", isSelectTask)
     if (isSelectTask) {
+        setClickUnit(false)
+
         //toggle
         setClickTasksCreate(true)
         setClickSelectTask(true)
@@ -85,6 +89,7 @@ function Home(props) {
 
   const StaffCreate = () => {
     console.log("StaffCreate!")
+    setClickUnit(false)
     setClickSelectTask(false)
     setClickSelectStaff(false)
     setClickTask(false)
@@ -99,15 +104,18 @@ function Home(props) {
     console.log("UnitCreate!")
 
     if (isSelectUnit){
+        setClickSelectTask(false)
+        setClickTask(false)
+
         setClickUnitCreate(true)
         setClickSelectUnit(true)
 
         setClickUnit(false)
 
         //setClickSelectUnit(false)
-        setClickSelectTask(false)
+        //setClickSelectTask(false)
         setClickSelectStaff(false)
-        setClickTask(false)
+        //setClickTask(false)
         setClickStaff(false)
         setClickTasksCreate(false)
         setClickStaffCreate(false)
@@ -119,6 +127,10 @@ function Home(props) {
   const TasksShow = () => {
     console.log("TasksShow!")
     if (isSelectTask) {
+        setClickUnitCreate(false)
+        setClickSelectUnit(false)
+        setClickUnit(false)
+
         //toggle
         setClickSelectTask(true)
         setClickTask(true)
@@ -143,6 +155,7 @@ function Home(props) {
     setClickTasksCreate(false)
     setClickStaffCreate(false)
     setClickSelectUnit(false)
+    setClickUnit(false)
 
   };
 

@@ -48,7 +48,12 @@ function Units(props) {
                 units.map(unit =>
                     <div className='Tasks-container' key={unit.id}>
                         <p>id: {unit.id}</p>
-                        <p>{unit.username}</p>
+                        <p>username: {unit.username}</p>
+                        <p>email: {unit.email}</p>
+                        <p>bio: {unit.bio}</p>
+                        <p>task: {unit.task}</p>
+                        <p>active: {unit.active ? "true" : "false"}</p>
+                        <button className='button-link'><Link to={"/home/unit/" + unit.id} >Show task</Link></button>
                     </div>)                
               }
         </div>

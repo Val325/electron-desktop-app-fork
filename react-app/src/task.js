@@ -4,6 +4,21 @@ function Task(props) {
     const [taskNum, setTaskNum] = useState(0);    
     const [tasks, setTasks] = useState([]);    
 
+    const [activePage, setActivePage] = useState(1); 
+    const [perTask, setPerTask] = useState(4); 
+    const [amountPaginate, setAmountPaginate] = useState(1); 
+    
+
+
+    const showPagination = num => {
+        let content = [];
+        for (let i = 0; i < num; i++) {
+            const item = i + 1;
+            content.push(<a key={item} onClick={() => setActivePage(item)}>{item}</a>);
+        }
+        return content;
+    };
+
     const GetTasks = () => {
         const url = "http://localhost:7878/tasks";
         fetch(url, {
@@ -20,6 +35,11 @@ function Task(props) {
                 console.log(data);
                 setTaskNum(data["task_num"]);
                 setTasks(data["tasks"]);
+                let numPaginate = Math.ceil(taskNum / perTask);
+                console.log("num paginate: ", numPaginate)
+                setAmountPaginate(numPaginate)
+                
+
               }
 
         });
@@ -36,22 +56,32 @@ function Task(props) {
         GetTasks()
     }, [props.render])
     /*
-        <p>{task.text}</p>
-        <p>template: {task.templ}</p>
-        <p>deadline: {task.deadline}</p>
-        <p>status: {task.status}</p>
-        <p>price: {task.price}</p>
+                    <a href="#">1</a>
+                    <a class="active" href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#">4</a>
+                    <a href="#">5</a>
+                   <a href="#">6</a> 
      */
     return (
         <div>
              { 
               props.render && tasks !== undefined && 
-                tasks.map(task =>
+                tasks.slice(0 + 4 * (activePage-1), 4 + 4 * (activePage-1)).map(task =>
                     <div className='Tasks-container' key={task.id}>
                         <p>id: {task.id}</p>
                         <p>{task.title}</p>
                         <button className='button-link'><Link to={"/home/task/" + task.id} >Show task</Link></button>
-                    </div>)                
+                    </div>)
+
+              }
+              {
+                props.render && tasks !== undefined &&
+                <div class="pagination">
+                    <a href="#">&laquo;</a>
+                      {showPagination(amountPaginate)} 
+                    <a href="#">&raquo;</a>
+                </div>
               }
         </div>
     )

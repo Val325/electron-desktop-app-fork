@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { HashRouter, Routes, Route, NavLink, Navigate, useNavigate, useParams} from 'react-router-dom'
 import './App.css'
 import Home from './home' 
+import UnitId from './unit'
 import TaskId from './OneTask'
+
 import EditTask from './editTask'
 function Main() {
   return (
@@ -82,6 +84,7 @@ function App() {
             <Route path='/home' element={<Home />} />
             <Route path='/home/task/:id' element={<TaskId />} />
             <Route path='/home/task/edit/:id' element={<EditTask render={true} />} />
+            <Route path='/home/unit/:id' element={<UnitId />} />
 
           </Routes>
         </HashRouter>
