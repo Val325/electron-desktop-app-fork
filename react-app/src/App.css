@@ -48,10 +48,11 @@ a:hover, a:visited, a:link, a:active {
 }
 .Home-left {
   width: 20%;
-  height: 110%;
+  height: 1000px;
   background-color: #393D3F;
   color: white;
 }
+
 .Home-left > div {
   padding: 5px;
 }
@@ -279,3 +280,5 @@ h5{
 }
 
 .pagination a:hover:not(.active) {background-color: #ddd;}
+.pagination-click a {background-color: #ddd;}
+

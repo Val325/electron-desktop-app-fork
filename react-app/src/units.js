@@ -5,6 +5,31 @@ function Units(props) {
     const [unitNum, setUnitNum] = useState(0);    
     const [units, setUnits] = useState([]);    
 
+    const [activePage, setActivePage] = useState(1);
+    const [perTask, setPerTask] = useState(2); 
+    const [amountPaginate, setAmountPaginate] = useState(1); 
+    
+    const addPage = () => {
+        if (activePage < amountPaginate) {
+            setActivePage(activePage + 1)
+        }
+    }
+
+    const minusPage = () => {
+        if (activePage > 1) {
+            setActivePage(activePage - 1)
+        }
+    }
+
+    const showPagination = num => {
+        let content = [];
+        for (let i = 0; i < num; i++) {
+            const item = i + 1;
+            content.push(<a key={item} onClick={() => setActivePage(item)}>{item}</a>);
+        }
+        return content;
+    };
+
     const GetUnits = () => {
         const url = "http://localhost:7878/unit";
         fetch(url, {
@@ -21,6 +46,9 @@ function Units(props) {
                 console.log(data);
                 setUnitNum(data["unit_num"]);
                 setUnits(data["units"]);
+                let numPaginate = Math.ceil(unitNum / perTask);
+                console.log("num paginate: ", numPaginate)
+                setAmountPaginate(numPaginate)
                 //setTaskNum(data["task_num"]);
                 //setTasks(data["tasks"]);
               }
@@ -35,17 +63,14 @@ function Units(props) {
         GetUnits()
     }, [props.render])
     /*
-        <p>{task.text}</p>
-        <p>template: {task.templ}</p>
-        <p>deadline: {task.deadline}</p>
-        <p>status: {task.status}</p>
-        <p>price: {task.price}</p>
+
+
      */
     return (
         <div>
              { 
               props.render && units !== undefined && 
-                units.map(unit =>
+                units.slice(0 + 2 * (activePage-1), 2 + 2 * (activePage-1)).map(unit =>
                     <div className='Tasks-container' key={unit.id}>
                         <p>id: {unit.id}</p>
                         <p>username: {unit.username}</p>
@@ -55,6 +80,14 @@ function Units(props) {
                         <p>active: {unit.active ? "true" : "false"}</p>
                         <button className='button-link'><Link to={"/home/unit/" + unit.id} >Show task</Link></button>
                     </div>)                
+              }
+              {
+                props.render && units !== undefined &&
+                <div class="pagination">
+                    <a onClick={minusPage}>&laquo;</a>
+                      {showPagination(amountPaginate)} 
+                    <a onClick={addPage}>&raquo;</a>
+                </div>
               }
         </div>
     )

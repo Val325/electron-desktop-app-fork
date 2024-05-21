@@ -1,14 +1,25 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
+
 function Task(props) {
     const [taskNum, setTaskNum] = useState(0);    
     const [tasks, setTasks] = useState([]);    
 
-    const [activePage, setActivePage] = useState(1); 
+    const [activePage, setActivePage] = useState(1);
     const [perTask, setPerTask] = useState(4); 
     const [amountPaginate, setAmountPaginate] = useState(1); 
     
+    const addPage = () => {
+        if (activePage < amountPaginate) {
+            setActivePage(activePage + 1)
+        }
+    }
 
+    const minusPage = () => {
+        if (activePage > 1) {
+            setActivePage(activePage - 1)
+        }
+    }
 
     const showPagination = num => {
         let content = [];
@@ -38,13 +49,8 @@ function Task(props) {
                 let numPaginate = Math.ceil(taskNum / perTask);
                 console.log("num paginate: ", numPaginate)
                 setAmountPaginate(numPaginate)
-                
-
               }
-
         });
-        
-
     }
 
     const ShowTaskId = () => {
@@ -55,14 +61,7 @@ function Task(props) {
     useEffect(() => {
         GetTasks()
     }, [props.render])
-    /*
-                    <a href="#">1</a>
-                    <a class="active" href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#">4</a>
-                    <a href="#">5</a>
-                   <a href="#">6</a> 
-     */
+
     return (
         <div>
              { 
@@ -78,9 +77,9 @@ function Task(props) {
               {
                 props.render && tasks !== undefined &&
                 <div class="pagination">
-                    <a href="#">&laquo;</a>
+                    <a onClick={minusPage}>&laquo;</a>
                       {showPagination(amountPaginate)} 
-                    <a href="#">&raquo;</a>
+                    <a onClick={addPage}>&raquo;</a>
                 </div>
               }
         </div>
