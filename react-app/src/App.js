@@ -17,6 +17,8 @@ function Main() {
 function Auth() {
   const [usernameStat, setUsername] = useState('')
   const [passwordStat, setPassword] = useState('')
+  const [navigatePath, setNavigate] = useState('')
+  const [token, setToken] = useState('')
   const [stateSend, setSend] = useState(false)
 
   let navigate = useNavigate();
@@ -38,10 +40,27 @@ function Auth() {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(body),
-    }).then((response) => response.json())
-    .then((data) => console.log(data));
-    
+    }).then((response) => {
+        if (!response.ok) {         
+            throw new Error('Something went wrong');
+        } 
+    }) 
+    .then((data) => {
+        if (data !== undefined){
+            console.log(data)
+            setToken(data.token)
+            //setSend(true) 
+            //navigate("/home"); 
+        }
+    }).catch(error => window.location.replace("/"));
     navigate("/home");
+    console.log(token)
+
+
+
+    
+    //navigate(navigatePath);
+    
   }
 
   return (
@@ -77,6 +96,7 @@ function Auth() {
 function App() {
   return (
     <div className='App'>
+      
       <header className='App-header'>
         <HashRouter>
           <Routes>

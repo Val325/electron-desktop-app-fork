@@ -49,9 +49,9 @@ function CreateTask(props) {
             "title": name,
             "text": deskription,
             "templ": templ,
-            "deadline": deadline,
+            "deadline": parseInt(deadline),
             "status": statusVal,
-            "price": price
+            "price": parseInt(price)
         }; 
 
         fetch(url, {
