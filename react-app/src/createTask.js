@@ -4,17 +4,20 @@ function CreateTask(props) {
     //const [id, setId] = useState(0);
     const [name, setName] = useState("");    
     const [statusVal, setStatus] = useState("");
-    const [price, setPrice] = useState(0);
+    //const [price, setPrice] = useState(0);
     const [deadline, setDeadline] = useState(0); 
     const [deskription, setDeskription] = useState("");
-    const [templ, setTempl] = useState(""); 
+    //const [templ, setTempl] = useState(""); 
     
+    const [injectID, setInjectID] = useState(0);
+    const [unitID, setUnitID] = useState(0);
+
     const GetTasks = () => {
         const url = "http://localhost:7878/tasks";
         fetch(url, {
             method: "GET",
             headers: {
-                'Authorization': 'Bearer 349t4ujh89t4h78349h7',
+                'Authorization': 'Bearer ' + props.accessToken,
                 'Content-Type': 'text/plain'
             },
         }).then((response) => response.json())
@@ -32,18 +35,18 @@ function CreateTask(props) {
 
     const TasksCreateButton = () => {
         //console.log("id: ", id)
-        console.log("Name: ", name)
+        /*console.log("Name: ", name)
         console.log("statusVal: ", statusVal)
         console.log("price: ", price)
         console.log("deadline: ", deadline)
         console.log("deskription: ", deskription)
         console.log("templ: ", templ)
         console.log("Is render: ", props.render)
-
+        */
 
         //Здесь отправить http запрос к серверу
         const url = "http://127.0.0.1:7878/tasks";
-        
+        /* 
         let body = {
             //"id": id,
             "title": name,
@@ -52,8 +55,16 @@ function CreateTask(props) {
             "deadline": parseInt(deadline),
             "status": statusVal,
             "price": parseInt(price)
-        }; 
-
+        };*/ 
+        let body = {
+            //"id": id,
+            "title": name,
+            "text": deskription,
+            "deadline": parseInt(deadline),
+            "status": statusVal,
+            "inj_id": parseInt(injectID),
+            "unit_id": parseInt(unitID)
+        };
         fetch(url, {
             method: "POST",
             headers: {
@@ -69,7 +80,7 @@ function CreateTask(props) {
     };
 
 
-
+//                        <input value={templ} onChange={e => setTempl(e.target.value)} placeholder="Templ" />   
     return (
     <div>
         { props.render &&
@@ -81,15 +92,21 @@ function CreateTask(props) {
             <div className='Create-task-colums'>
                 
                 <div className='Create-task-left'>
+                        Name
                         <input value={name} onChange={e => setName(e.target.value)} placeholder="Name" />
+                        Status
                         <input value={statusVal} onChange={e => setStatus(e.target.value)} placeholder="Status" />
-                        <input value={price} onChange={e => setPrice(e.target.value)} placeholder="Price" />
+                        Deadline
                         <input value={deadline} onChange={e => setDeadline(e.target.value)} placeholder="Deadline" />
+                        InjectId
+                        <input value={injectID} onChange={e => setInjectID(e.target.value)} placeholder="InjectId" />
 
                 </div>
                 <div className='Create-task-right'>
+                        Deskription
                         <input value={deskription} onChange={e => setDeskription(e.target.value)} placeholder="Deskription" />
-                        <input value={templ} onChange={e => setTempl(e.target.value)} placeholder="Templ" />                    
+                        UnitId
+                        <input value={unitID} onChange={e => setUnitID(e.target.value)} placeholder="UnitId" />                
                 </div>
             
             </div>

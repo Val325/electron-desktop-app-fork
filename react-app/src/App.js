@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { HashRouter, Routes, Route, NavLink, Navigate, useNavigate, useParams} from 'react-router-dom'
+import { HashRouter, Routes, Route, NavLink, Navigate, useNavigate, useParams, redirect} from 'react-router-dom'
+import {createContext, useContext } from 'react';
 import './App.css'
 import Home from './home' 
 import UnitId from './unit'
 import TaskId from './OneTask'
-
 import EditTask from './editTask'
+
+const TokenContext = createContext(null);
+
 function Main() {
   return (
     <div>
@@ -18,9 +21,8 @@ function Auth() {
   const [usernameStat, setUsername] = useState('')
   const [passwordStat, setPassword] = useState('')
   const [navigatePath, setNavigate] = useState('')
-  const [token, setToken] = useState('')
   const [stateSend, setSend] = useState(false)
-
+  const {token, setToken} = useContext(TokenContext);
   let navigate = useNavigate();
 
   const handleLogin = () => {
@@ -34,6 +36,8 @@ function Auth() {
         password: passwordStat
     }; 
 
+
+
     fetch(url, {
       method: "POST",
       headers: {
@@ -41,30 +45,48 @@ function Auth() {
       },
       body: JSON.stringify(body),
     }).then((response) => {
-        if (!response.ok) {         
-            throw new Error('Something went wrong');
+        if (!response.ok) {
+            //navigate("/");
+            //throw new Error('Something went wrong');
+            //setSend(false)
+            window.location.replace("/")
+            //document.location.href = '/'
+            //redirect("/");
         } 
     }) 
     .then((data) => {
         if (data !== undefined){
             console.log(data)
             setToken(data.token)
-            //setSend(true) 
-            //navigate("/home"); 
+            setSend(true)
+            
+            //navigate("/home");
+             //window.location.replace("/home")
         }
-    }).catch(error => window.location.replace("/"));
-    navigate("/home");
-    console.log(token)
+    })
+    //redirect("/home");
+    navigate("/home")
+    //.catch(error => window.location.replace("/"));
+    //setTimeout(() => , 2000);
+    //console.log(token)
 
 
 
     
-    //navigate(navigatePath);
-    
+    //navigate(navigatePath) 
   }
-
-  return (
+  useEffect(() => {
+    //if (stateSend){
+    //navigate("/home");
+    //}else{
+    //    navigate("/");
+    //}
+    
+    //console.log(token)    
+  }, [stateSend])
+    return (
     <div className='App'>
+      
       <header className='App-header'>
         <h1>Application Name</h1>
         <form onSubmit={handleLogin}>
@@ -94,22 +116,33 @@ function Auth() {
 }
 
 function App() {
+  const [token, setToken] = useState("")
   return (
+    
     <div className='App'>
-      
+     
       <header className='App-header'>
+        <TokenContext.Provider value={{
+          token,
+          setToken
+        }}>
         <HashRouter>
+
           <Routes>
+
             <Route path='/' element={<Auth />} />
             <Route path='/home' element={<Home />} />
             <Route path='/home/task/:id' element={<TaskId />} />
             <Route path='/home/task/edit/:id' element={<EditTask render={true} />} />
             <Route path='/home/unit/:id' element={<UnitId />} />
-
+        
           </Routes>
+
         </HashRouter>
+      </TokenContext.Provider>       
       </header>
     </div>
+   
   )
 }
 

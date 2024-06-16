@@ -55,7 +55,7 @@ function Home(props) {
     setClickSelectUnit(true)
     setClickUnit(true)
     
-      setClickSelectTask(false)
+    setClickSelectTask(false)
     setClickSelectStaff(false)
     setClickTask(false)
     setClickStaff(false)
@@ -197,11 +197,11 @@ function Home(props) {
 
             </div>
             <div className='Task-white'>
-                {<Task render={isClickTask} />}
-                {<StaffManagers render={isSelectStaff} />}
-                {<CreateUnit render={isClickUnitCreate} />}
-                {<Units render={isClickUnit} />}
-                {<CreateTask render={isClickTasksCreate} />} 
+                {<Task render={isClickTask} accessToken={props.accessToken} />}
+                {<StaffManagers render={isSelectStaff} accessToken={props.accessToken} />}
+                {<CreateUnit render={isClickUnitCreate} accessToken={props.accessToken} />}
+                {<Units render={isClickUnit} accessToken={props.accessToken} />}
+                {<CreateTask render={isClickTasksCreate} accessToken={props.accessToken} />} 
             </div>
         </div>
       </div>

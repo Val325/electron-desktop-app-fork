@@ -43,7 +43,7 @@ function CreateUnit(props) {
         */
 
         //Здесь отправить http запрос к серверу
-        const url = "http://127.0.0.1:7878/unit";
+        const url = "http://127.0.0.1:7878/units";
         let body = {
             //"id": id,
             "username": name,
