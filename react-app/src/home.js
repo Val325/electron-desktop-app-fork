@@ -1,13 +1,38 @@
 import React, {useEffect , useState} from 'react'
-import CreateTask from './createTask' 
+import CreateTask from './create/createTask' 
 import StaffManagers from './Staffmanagers' 
 import Task from './task'
 import TaskId from './OneTask'
-import CreateUnit from './createUnit'
+import CreateUnit from './create/createUnit'
 import Units from './units'
 import { HashRouter, Routes, Route, NavLink, Navigate, useNavigate, useParams} from 'react-router-dom'
 
+let Selection = [
+  { id: 0, name: 'Aris', selection: false, isShow: true},
+  { id: 1, name: 'Units', selection: false, isShow: true},
+  { id: 2, name: 'Tasks', selection: false, isShow: true},
+  { id: 3, name: 'Injs', selection: false, isShow: true},
+  { id: 4, name: 'Terms', selection: false, isShow: true},
+];
+
+const arisNum = 0
+const unitsNum = 1
+const tasksNum = 2
+const injsNum = 3
+const termsNum = 4
+/*
+let SelectionChangeData = [
+  { id: 0, create: false, edit: false},
+  { id: 1, create: false, edit: false},
+];
+*/
 function Home(props) {
+  const [tabState, setTab] = useState(
+    Selection
+  );
+  const [idState, setStateId] = useState(0);
+
+/*
   const [isSelectTask, setClickSelectTask] = useState(true);
   const [isSelectStaff, setClickSelectStaff] = useState(false);  
   const [isSelectUnit, setClickSelectUnit] = useState(false);
@@ -177,31 +202,77 @@ function Home(props) {
     setClickTaskClass("select-btn")
     setClickCreateClass("btn")
   };
-    
-  return (
-    <div>
+*/
+  const SelectionTab = (data) => {
+      //console.log("id: ", data);
       
-      <div className='Home-main'>
-        <div className='Home-left'>
+        const nextTab = tabState.map(tab => {
+            if (data.id == tab.id){
+                setStateId(data.id)
+                console.log("id: ", idState)
+                return {
+                ...tab,
+                selection: true,
+                };
+            }else {
+                return {
+                ...tab,
+                selection: false,
+                };
+            }
+            
+         });
+     setTab(nextTab); 
+    }
+      
+ // };
+/*
             <div><button onClick={Tasks}>Tasks</button></div>
             <div><button onClick={Staff}>Staff</button></div>
             <div><button onClick={Unit}>Unit</button></div>
-            
-        </div>
-        <div className='Home-right'>
-            <div className='Tasks-staff-create'>
+
+
                 {isSelectTask && <div><button className={isClickTaskClass} onClick={TasksShow}>Tasks</button></div>} 
                 {isSelectTask && <div><button className={isClickCreateClass} onClick={TasksCreate}>Create</button></div>}
                 {isSelectUnit && <div><button className={isClickTaskClass} onClick={UnitShow}>Units</button></div>} 
                 {isSelectUnit && <div><button className={isClickCreateClass} onClick={UnitCreate}>Create</button></div>}
 
-            </div>
-            <div className='Task-white'>
                 {<Task render={isClickTask} accessToken={props.accessToken} />}
                 {<StaffManagers render={isSelectStaff} accessToken={props.accessToken} />}
                 {<CreateUnit render={isClickUnitCreate} accessToken={props.accessToken} />}
                 {<Units render={isClickUnit} accessToken={props.accessToken} />}
                 {<CreateTask render={isClickTasksCreate} accessToken={props.accessToken} />} 
+                
+                {idState == 2 && }
+
+*/
+
+
+  return (
+    <div>
+      
+      <div className='Home-main'>
+        <div className='Home-left'>
+        {tabState.map(tab => (
+          <li key={tab.id}>
+            <div><button onClick={() => SelectionTab(tab)}>{tab.name}</button></div>
+          </li>
+        ))} 
+            
+
+            
+        </div>
+        <div className='Home-right'>
+            <div className='Tasks-staff-create'>
+
+            </div>
+            <div className='Task-white'>
+                {idState == arisNum && "Aris"}
+                {idState == unitsNum && "Units"}
+                {idState == tasksNum && <Task render={tabState[idState].selection} accessToken={props.accessToken} />}
+                {idState == tasksNum && <CreateTask render={!tabState[idState].isShow} accessToken={props.accessToken} />} 
+                {idState == injsNum && "Injs"}
+                {idState == termsNum && "Terms"}
             </div>
         </div>
       </div>

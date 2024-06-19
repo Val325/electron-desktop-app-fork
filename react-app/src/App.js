@@ -5,7 +5,7 @@ import './App.css'
 import Home from './home' 
 import UnitId from './unit'
 import TaskId from './OneTask'
-import EditTask from './editTask'
+import EditTask from './edit/editTask'
 
 const TokenContext = createContext(null);
 
@@ -46,10 +46,10 @@ function Auth() {
       body: JSON.stringify(body),
     }).then((response) => {
         if (!response.ok) {
-            //navigate("/");
+            navigate("/");
             //throw new Error('Something went wrong');
             //setSend(false)
-            window.location.replace("/")
+            //window.location.replace("/")
             //document.location.href = '/'
             //redirect("/");
         } 
