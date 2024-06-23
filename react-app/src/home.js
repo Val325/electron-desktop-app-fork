@@ -8,12 +8,14 @@ import Units from './units'
 import { HashRouter, Routes, Route, NavLink, Navigate, useNavigate, useParams} from 'react-router-dom'
 
 let Selection = [
-  { id: 0, name: 'Aris', selection: false, isShow: true},
-  { id: 1, name: 'Units', selection: false, isShow: true},
-  { id: 2, name: 'Tasks', selection: false, isShow: true},
-  { id: 3, name: 'Injs', selection: false, isShow: true},
-  { id: 4, name: 'Terms', selection: false, isShow: true},
+  { id: 0, name: 'Aris', selection: false, edit: false},
+  { id: 1, name: 'Units', selection: false, edit: false},
+  { id: 2, name: 'Tasks', selection: false, edit: false},
+  { id: 3, name: 'Injs', selection: false, edit: false},
+  { id: 4, name: 'Terms', selection: false, edit: false},
 ];
+
+
 
 const arisNum = 0
 const unitsNum = 1
@@ -30,8 +32,8 @@ function Home(props) {
   const [tabState, setTab] = useState(
     Selection
   );
-  const [idState, setStateId] = useState(0);
 
+  const [idState, setStateId] = useState(0);
 /*
   const [isSelectTask, setClickSelectTask] = useState(true);
   const [isSelectStaff, setClickSelectStaff] = useState(false);  
@@ -224,7 +226,62 @@ function Home(props) {
          });
      setTab(nextTab); 
     }
+  const SelectionEditTab = (id) => {
+      //console.log("id: ", data);
       
+        const nextTab = tabState.map(tab => {
+            if (id == tab.id){
+
+                return {
+                ...tab,
+                edit: true,
+                };
+            }else {
+                return {
+                ...tab,
+                edit: false,
+                };
+            }
+            
+         });
+     setTab(nextTab); 
+    }
+  const SelectionShowTab = (id) => {
+      //console.log("id: ", data);
+      
+        const nextTab = tabState.map(tab => {
+            if (id == tab.id){
+
+                return {
+                ...tab,
+                edit: false,
+                };
+            }else {
+                return {
+                ...tab,
+                edit: false,
+                };
+            }
+            
+         });
+     setTab(nextTab); 
+    }
+/*
+{<Task render={!tabState[id].edit} accessToken={props.accessToken} /> }
+{ <CreateTask render={tabState[id].edit} accessToken={props.accessToken} />}
+*/
+
+
+const BtnSelectionCreateTask = (id) => {
+    return <div>
+            <div> 
+                <button onClick={Task}>Tasks</button>
+            </div>
+            <div>
+                <button onClick={SelectionEditTab(id)}>Create task</button> 
+            </div>
+          </div> 
+  }      
  // };
 /*
             <div><button onClick={Tasks}>Tasks</button></div>
@@ -255,7 +312,7 @@ function Home(props) {
         <div className='Home-left'>
         {tabState.map(tab => (
           <li key={tab.id}>
-            <div><button onClick={() => SelectionTab(tab)}>{tab.name}</button></div>
+            {<div><button onClick={() => SelectionTab(tab)}>{tab.name}</button></div>}
           </li>
         ))} 
             
@@ -264,13 +321,14 @@ function Home(props) {
         </div>
         <div className='Home-right'>
             <div className='Tasks-staff-create'>
-
+                <div><button onClick={() => SelectionEditTab(idState)}>Create</button></div>
+                <div><button onClick={() => SelectionShowTab(idState)}>Main</button></div>
             </div>
             <div className='Task-white'>
                 {idState == arisNum && "Aris"}
                 {idState == unitsNum && "Units"}
-                {idState == tasksNum && <Task render={tabState[idState].selection} accessToken={props.accessToken} />}
-                {idState == tasksNum && <CreateTask render={!tabState[idState].isShow} accessToken={props.accessToken} />} 
+                {idState == tasksNum && "Task"}
+                {tabState[idState].edit && <CreateTask render={true} accessToken={props.accessToken} />}
                 {idState == injsNum && "Injs"}
                 {idState == termsNum && "Terms"}
             </div>
