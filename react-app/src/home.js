@@ -326,9 +326,14 @@ const BtnSelectionCreateTask = (id) => {
             </div>
             <div className='Task-white'>
                 {idState == arisNum && "Aris"}
+                
                 {idState == unitsNum && "Units"}
+                {idState == unitsNum && tabState[idState].edit && <CreateUnit render={true} accessToken={props.accessToken} />}
+                {idState == unitsNum && !tabState[idState].edit && <Units render={true} accessToken={props.accessToken} />}
+
                 {idState == tasksNum && "Task"}
-                {tabState[idState].edit && <CreateTask render={true} accessToken={props.accessToken} />}
+                {idState == tasksNum && tabState[idState].edit && <CreateTask render={true} accessToken={props.accessToken} />}
+                
                 {idState == injsNum && "Injs"}
                 {idState == termsNum && "Terms"}
             </div>
