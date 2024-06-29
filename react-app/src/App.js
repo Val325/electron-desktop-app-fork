@@ -52,17 +52,19 @@ function Auth() {
             //window.location.replace("/")
             //document.location.href = '/'
             //redirect("/");
-        } 
+        }
+        //console.log(response)
+        return response.json()
     }) 
     .then((data) => {
-        if (data !== undefined){
-            console.log(data)
+        //if (data !== undefined){
             setToken(data.token)
             setSend(true)
+            console.log(token)
             
             //navigate("/home");
              //window.location.replace("/home")
-        }
+        //}
     })
     //redirect("/home");
     navigate("/home")

@@ -56,7 +56,7 @@ function CreateUnit(props) {
         fetch(url, {
             method: "POST",
             headers: {
-                "Authorization": "Bearer 349t4ujh89t4h78349h7",
+                "Authorization": "Bearer " + props.accessToken,
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(body),

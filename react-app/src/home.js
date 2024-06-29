@@ -1,9 +1,11 @@
 import React, {useEffect , useState} from 'react'
+import {createContext, useContext } from 'react';
 import CreateTask from './create/createTask' 
 import StaffManagers from './Staffmanagers' 
 import Task from './task'
 import TaskId from './OneTask'
 import CreateUnit from './create/createUnit'
+import CreateInjs from './create/createInjs'
 import Units from './units'
 import { HashRouter, Routes, Route, NavLink, Navigate, useNavigate, useParams} from 'react-router-dom'
 
@@ -32,7 +34,6 @@ function Home(props) {
   const [tabState, setTab] = useState(
     Selection
   );
-
   const [idState, setStateId] = useState(0);
 /*
   const [isSelectTask, setClickSelectTask] = useState(true);
@@ -325,6 +326,7 @@ const BtnSelectionCreateTask = (id) => {
                 <div><button onClick={() => SelectionShowTab(idState)}>Main</button></div>
             </div>
             <div className='Task-white'>
+                {console.log(props.accessToken)}
                 {idState == arisNum && "Aris"}
                 
                 {idState == unitsNum && "Units"}
@@ -335,6 +337,8 @@ const BtnSelectionCreateTask = (id) => {
                 {idState == tasksNum && tabState[idState].edit && <CreateTask render={true} accessToken={props.accessToken} />}
                 
                 {idState == injsNum && "Injs"}
+                {idState == injsNum && tabState[idState].edit && <CreateInjs render={true} accessToken={props.accessToken} />}
+      
                 {idState == termsNum && "Terms"}
             </div>
         </div>
