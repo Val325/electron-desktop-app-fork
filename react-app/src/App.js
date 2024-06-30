@@ -3,8 +3,8 @@ import { HashRouter, Routes, Route, NavLink, Navigate, useNavigate, useParams, r
 import {createContext, useContext } from 'react';
 import './App.css'
 import Home from './home' 
-import UnitId from './unit'
-import TaskId from './OneTask'
+import UnitId from './show/unit'
+import TaskId from './show/OneTask'
 import EditTask from './edit/editTask'
 import TokenContext from './contextapi' 
 //const TokenContext = createContext(null);

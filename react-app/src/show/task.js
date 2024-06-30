@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
+import TokenContext from '../contextapi'
+import {createContext, useContext } from 'react';
 
 function Task(props) {
     const [taskNum, setTaskNum] = useState(0);    
@@ -8,7 +10,8 @@ function Task(props) {
     const [activePage, setActivePage] = useState(1);
     const [perTask, setPerTask] = useState(4); 
     const [amountPaginate, setAmountPaginate] = useState(1); 
-    
+    const {token, setToken} = useContext(TokenContext);
+
     const addPage = () => {
         if (activePage < amountPaginate) {
             setActivePage(activePage + 1)
@@ -35,7 +38,7 @@ function Task(props) {
         fetch(url, {
             method: "GET",
             headers: {
-                'Authorization': 'Bearer 349t4ujh89t4h78349h7',
+                'Authorization': 'Bearer ' + token,
                 'Content-Type': 'text/plain'
             },
             }).then((response) => response.json())
@@ -44,8 +47,11 @@ function Task(props) {
                 console.log("undefined")
               }else{  
                 console.log(data);
-                setTaskNum(data["task_num"]);
-                setTasks(data["tasks"]);
+                console.log("lenght: ", data.len)
+                console.log("Posts: ", data.list)
+                console.log("First post.id: ", data.list[0].id)
+                setTaskNum(data.len);
+                setTasks(data.list);
                 let numPaginate = Math.ceil(taskNum / perTask);
                 console.log("num paginate: ", numPaginate)
                 setAmountPaginate(numPaginate)

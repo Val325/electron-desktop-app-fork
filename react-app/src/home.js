@@ -2,11 +2,11 @@ import React, {useEffect , useState} from 'react'
 import {createContext, useContext } from 'react';
 import CreateTask from './create/createTask' 
 import StaffManagers from './Staffmanagers' 
-import Task from './task'
-import TaskId from './OneTask'
+import Task from './show/task'
+import TaskId from './show/OneTask'
 import CreateUnit from './create/createUnit'
 import CreateInjs from './create/createInjs'
-import Units from './units'
+import Units from './show/units'
 import { HashRouter, Routes, Route, NavLink, Navigate, useNavigate, useParams} from 'react-router-dom'
 
 let Selection = [
@@ -333,7 +333,7 @@ const BtnSelectionCreateTask = (id) => {
                 {idState == unitsNum && tabState[idState].edit && <CreateUnit render={true} accessToken={props.accessToken} />}
                 {idState == unitsNum && !tabState[idState].edit && <Units render={true} accessToken={props.accessToken} />}
 
-                {idState == tasksNum && "Task"}
+                {idState == tasksNum && <Task render={true} />}
                 {idState == tasksNum && tabState[idState].edit && <CreateTask render={true} accessToken={props.accessToken} />}
                 
                 {idState == injsNum && "Injs"}

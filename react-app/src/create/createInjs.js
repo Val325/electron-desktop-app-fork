@@ -90,7 +90,7 @@ function CreateInjs(props) {
         { props.render &&
         <div className='Create-task'>
             <div className='Create-task-header'>
-                <div className='Create-task-name'>Create Task</div>
+                <div className='Create-task-name'>Create Injection</div>
                 <div className='Create-task-btn'><button onClick={InjsCreateButton}>Create</button></div>
             </div>
             <div className='Create-task-colums'>
