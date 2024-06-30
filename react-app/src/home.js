@@ -1,13 +1,12 @@
-import React, {useEffect , useState} from 'react'
-import {createContext, useContext } from 'react';
-import CreateTask from './create/createTask' 
-import StaffManagers from './Staffmanagers' 
-import Task from './show/task'
 import TaskId from './show/OneTask'
+import CreateTask from './create/createTask'
 import CreateUnit from './create/createUnit'
 import CreateInjs from './create/createInjs'
 import Units from './show/units'
+import Aris from './show/aris'
+import Task from './show/task'
 import { HashRouter, Routes, Route, NavLink, Navigate, useNavigate, useParams} from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
 
 let Selection = [
   { id: 0, name: 'Aris', selection: false, edit: false},
@@ -327,7 +326,7 @@ const BtnSelectionCreateTask = (id) => {
             </div>
             <div className='Task-white'>
 
-                {idState == arisNum && "Aris"}
+                {idState == arisNum && <Aris render={true} />}
                 
                 {idState == unitsNum && "Units"}
                 {idState == unitsNum && tabState[idState].edit && <CreateUnit render={true} accessToken={props.accessToken} />}

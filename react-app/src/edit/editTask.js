@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from 'react'
 import { HashRouter, Routes, Route, NavLink, Navigate, useNavigate, useParams} from 'react-router-dom'
+import TokenContext from '../contextapi'
+import {createContext, useContext } from 'react';
 
 function EditTask(props) {
     //const [id, setId] = useState(0);
     const [name, setName] = useState("");    
     const [statusVal, setStatus] = useState("");
-    const [price, setPrice] = useState(0);
-    const [deadline, setDeadline] = useState(0); 
+    
+    const [inj, setInj] = useState();
+    const [unit, setUnit] = useState();
+
+    const [deadline, setDeadline] = useState(); 
     const [deskription, setDeskription] = useState("");
-    const [templ, setTempl] = useState(""); 
+    const [templ, setTempl] = useState("");
+    const {token, setToken} = useContext(TokenContext);
     let { id } = useParams(); 
     let navigate = useNavigate();
     
@@ -16,20 +22,19 @@ function EditTask(props) {
         //Здесь отправить http запрос к серверу
         const url = "http://127.0.0.1:7878/tasks/" + id;
         
-        let body = {
-            //"id": id,
+        let body = { 
             "title": name,
             "text": deskription,
-            "templ": templ,
-            "deadline": deadline,
+            "deadline":  parseInt(deadline),
             "status": statusVal,
-            "price": price
+            "inj_id": parseInt(inj),
+            "unit_id": parseInt(unit) 
         }; 
 
         fetch(url, {
             method: "PUT",
             headers: {
-                "Authorization": "Bearer 349t4ujh89t4h78349h7",
+                "Authorization": "Bearer " + token,
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(body),
@@ -51,13 +56,13 @@ function EditTask(props) {
                 <div className='Edit-task-left'>
                         <input value={name} onChange={e => setName(e.target.value)} placeholder="Name" />
                         <input value={statusVal} onChange={e => setStatus(e.target.value)} placeholder="Status" />
-                        <input value={price} onChange={e => setPrice(e.target.value)} placeholder="Price" />
                         <input value={deadline} onChange={e => setDeadline(e.target.value)} placeholder="Deadline" />
 
                 </div>
                 <div className='Edit-task-right'>
                         <input value={deskription} onChange={e => setDeskription(e.target.value)} placeholder="Deskription" />
-                        <input value={templ} onChange={e => setTempl(e.target.value)} placeholder="Templ" />                    
+                        <input value={inj} onChange={e => setInj(e.target.value)} placeholder="injection" />
+                        <input value={unit} onChange={e => setUnit(e.target.value)} placeholder="unit" />                
                 </div>
                 
             
