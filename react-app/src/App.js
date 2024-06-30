@@ -61,22 +61,10 @@ function Auth() {
             setToken(data.token)
             setSend(true)
             
-            console.log("data: ", data)
-            console.log("token: ", data.token) 
-            //navigate("/home");
-             //window.location.replace("/home")
+
         }
     })
-    //redirect("/home");
     navigate("/home")
-    //.catch(error => window.location.replace("/"));
-    //setTimeout(() => , 2000);
-    //console.log(token)
-
-
-
-    
-    //navigate(navigatePath) 
   }
   useEffect(() => {
     //if (stateSend){

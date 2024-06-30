@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react'
-
+import TokenContext from '../contextapi'
+import {createContext, useContext } from 'react';
 function CreateUnit(props) {
     //const [id, setId] = useState(0);
-    const [name, setName] = useState("");    
+    const [name, setName] = useState("");
+    const [password, setPassword] = useState("");    
     const [bio, setBio] = useState("");
     const [email, setEmail] = useState("");
     const [active, setActive] = useState(false); 
     const [task, setTask] = useState(0);
-
+    const {token, setToken} = useContext(TokenContext);
    /* 
     const GetTasks = () => {
         const url = "http://localhost:7878/tasks";
@@ -50,13 +52,14 @@ function CreateUnit(props) {
             "bio": bio,
             "email": email,
             "active": active,
+            "password": password, 
             "task": parseInt(task),
         }; 
 
         fetch(url, {
             method: "POST",
             headers: {
-                "Authorization": "Bearer " + props.accessToken,
+                "Authorization": "Bearer " + token,
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(body),
@@ -93,6 +96,7 @@ const str2bool = (value) => {
 
                 </div>
                 <div className='Create-task-right'>
+                        <input value={password} onChange={e => setPassword(e.target.value)} placeholder="Password" />
                         <input value={active} onChange={e => setActive(str2bool(e.target.value))} placeholder="Active" />
                         <input value={task} onChange={e => setTask(e.target.value)} placeholder="Task" />
                 </div>

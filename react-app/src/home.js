@@ -326,7 +326,7 @@ const BtnSelectionCreateTask = (id) => {
                 <div><button onClick={() => SelectionShowTab(idState)}>Main</button></div>
             </div>
             <div className='Task-white'>
-                {console.log(props.accessToken)}
+
                 {idState == arisNum && "Aris"}
                 
                 {idState == unitsNum && "Units"}

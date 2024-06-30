@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react'
+import TokenContext from '../contextapi'
+import {createContext, useContext } from 'react';
 
 function CreateTask(props) {
     //const [id, setId] = useState(0);
+    const {token, setToken} = useContext(TokenContext);
     const [name, setName] = useState("");    
     const [statusVal, setStatus] = useState("");
     //const [price, setPrice] = useState(0);
@@ -17,7 +20,7 @@ function CreateTask(props) {
         fetch(url, {
             method: "GET",
             headers: {
-                'Authorization': 'Bearer ' + props.accessToken,
+                'Authorization': 'Bearer ' + token,
                 'Content-Type': 'text/plain'
             },
         }).then((response) => response.json())
@@ -68,7 +71,7 @@ function CreateTask(props) {
         fetch(url, {
             method: "POST",
             headers: {
-                'Authorization': 'Bearer ' + props.accessToken,
+                'Authorization': 'Bearer ' + token,
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(body),
