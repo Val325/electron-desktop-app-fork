@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-
+import TokenContext from '../contextapi'
+import {createContext, useContext } from 'react';
 function CreateInjs(props) {
     //const [id, setId] = useState(0);
     const [time, setTime] = useState(0);    
@@ -8,7 +9,7 @@ function CreateInjs(props) {
     const [code, setCode] = useState("17NF");
     const [statusInj, setStatusInj] = useState("on_server");
 
-
+    const {token, setToken} = useContext(TokenContext);
     //const [price, setPrice] = useState(0);
     //const [deadline, setDeadline] = useState(0); 
     //const [deskription, setDeskription] = useState("");
@@ -22,7 +23,7 @@ function CreateInjs(props) {
         fetch(url, {
             method: "GET",
             headers: {
-                'Authorization': 'Bearer ' + props.accessToken,
+                'Authorization': 'Bearer ' + token,
                 'Content-Type': 'text/plain'
             },
         }).then((response) => response.json())
@@ -71,14 +72,14 @@ function CreateInjs(props) {
         fetch(url, {
             method: "POST",
             headers: {
-                'Authorization': 'Bearer ' + props.accessToken,
+                'Authorization': 'Bearer ' + token,
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(body),
         }).then((response) => response.json())
         .then((data) => { 
             console.log(data)
-
+            console.log("token: ", token)
         });
     };
 

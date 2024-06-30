@@ -6,8 +6,8 @@ import Home from './home'
 import UnitId from './unit'
 import TaskId from './OneTask'
 import EditTask from './edit/editTask'
-
-const TokenContext = createContext(null);
+import TokenContext from './contextapi' 
+//const TokenContext = createContext(null);
 
 function Main() {
   return (
@@ -57,14 +57,15 @@ function Auth() {
         return response.json()
     }) 
     .then((data) => {
-        //if (data !== undefined){
+        if (data !== undefined){
             setToken(data.token)
             setSend(true)
-            console.log(token)
             
+            console.log("data: ", data)
+            console.log("token: ", data.token) 
             //navigate("/home");
              //window.location.replace("/home")
-        //}
+        }
     })
     //redirect("/home");
     navigate("/home")
