@@ -6,6 +6,7 @@ import {createContext, useContext } from 'react';
 function Injs(props) {
     const [taskNum, setTaskNum] = useState(0);    
     const [tasks, setTasks] = useState([]);    
+    const [isSet, setSend] = useState(false);    
 
     const [activePage, setActivePage] = useState(1);
     const [perTask, setPerTask] = useState(3); 
@@ -26,7 +27,10 @@ function Injs(props) {
 
     const showPagination = num => {
         let content = [];
-        
+        //if (!getTask) GetTasks();
+        //if (!getTask) getTask = true;
+
+        // 
         for (let i = 0; i < num; i++) {
             const item = i + 1;
             content.push(<a key={item} onClick={() => setActivePage(item)}>{item}</a>);
@@ -56,6 +60,7 @@ function Injs(props) {
                 let numPaginate = Math.ceil(taskNum / perTask);
                 console.log("num paginate: ", numPaginate)
                 setAmountPaginate(numPaginate)
+                setSend(true)
               }
         });
     }
@@ -66,8 +71,8 @@ function Injs(props) {
 
     }
     useEffect(() => {
-        GetTasks();
-    }, [props.render])
+       GetTasks() 
+    }, [isSet])
 
     return (
         <div>
@@ -88,6 +93,7 @@ function Injs(props) {
                 props.render && 
                 <div class="pagination">
                     <a onClick={minusPage}>&laquo;</a>
+                      {console.log("amountPaginate: ", amountPaginate)}
                       {showPagination(amountPaginate)} 
                     <a onClick={addPage}>&raquo;</a>
                 </div>

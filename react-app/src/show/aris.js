@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
 import TokenContext from '../contextapi'
 import {createContext, useContext } from 'react';
+import { HashRouter, Routes, Route, NavLink, Navigate, useNavigate, useParams, redirect} from 'react-router-dom'
 
 function Aris(props) {
     const [taskNum, setTaskNum] = useState(0);    
@@ -11,6 +12,7 @@ function Aris(props) {
     const [perTask, setPerTask] = useState(4); 
     const [amountPaginate, setAmountPaginate] = useState(1); 
     const {token, setToken} = useContext(TokenContext);
+    let navigate = useNavigate();
 
     const addPage = () => {
         if (activePage < amountPaginate) {
@@ -59,14 +61,18 @@ function Aris(props) {
         });
     }
 
-    const ShowTaskId = () => {
-        const url = "http://localhost:7878/tasks";
 
-
-    }
     useEffect(() => {
         GetTasks()
     }, [props.render])
+    //auth
+    useEffect(() => {
+        if(token === undefined) {
+            navigate("/")
+        }
+    
+    }, [token]);
+
     //                        <button className='button-link'><Link to={"/home/task/" + task.id} >Show task</Link></button>
 
     return (

@@ -60,7 +60,6 @@ function Auth() {
         if (data !== undefined){
             setToken(data.token)
             setSend(true)
-            
 
         }
     })
@@ -108,6 +107,7 @@ function Auth() {
 
 function App() {
   const [token, setToken] = useState("")
+
   return (
     
     <div className='App'>
@@ -117,6 +117,7 @@ function App() {
           token,
           setToken
         }}>
+
         <HashRouter>
 
           <Routes>

@@ -333,11 +333,11 @@ const BtnSelectionCreateTask = (id) => {
                 {idState == unitsNum && "Units"}
                 {idState == unitsNum && tabState[idState].edit && <CreateUnit render={true} accessToken={props.accessToken} />}
                 {idState == unitsNum && !tabState[idState].edit && <Units render={true} accessToken={props.accessToken} />}
-
+                
                 {idState == tasksNum && !tabState[idState].edit && <Task render={true} />}
                 {idState == tasksNum && tabState[idState].edit && <CreateTask render={true} accessToken={props.accessToken} />}
                 
-                {idState == injsNum && !tabState[idState].edit && <Injs render={tabState[idState].selection} />}
+                {idState == injsNum && !tabState[idState].edit && <Injs render={!tabState[idState].edit} />}
                 {idState == injsNum && tabState[idState].edit && <CreateInjs render={true} accessToken={props.accessToken} />}
       
                 {idState == termsNum && <Terms render={true} />}
