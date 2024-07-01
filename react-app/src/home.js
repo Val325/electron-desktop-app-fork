@@ -2,6 +2,8 @@ import TaskId from './show/OneTask'
 import CreateTask from './create/createTask'
 import CreateUnit from './create/createUnit'
 import CreateInjs from './create/createInjs'
+import Injs from './show/injs'
+import Terms from './show/terms'
 import Units from './show/units'
 import Aris from './show/aris'
 import Task from './show/task'
@@ -332,13 +334,13 @@ const BtnSelectionCreateTask = (id) => {
                 {idState == unitsNum && tabState[idState].edit && <CreateUnit render={true} accessToken={props.accessToken} />}
                 {idState == unitsNum && !tabState[idState].edit && <Units render={true} accessToken={props.accessToken} />}
 
-                {idState == tasksNum && <Task render={true} />}
+                {idState == tasksNum && !tabState[idState].edit && <Task render={true} />}
                 {idState == tasksNum && tabState[idState].edit && <CreateTask render={true} accessToken={props.accessToken} />}
                 
-                {idState == injsNum && "Injs"}
+                {idState == injsNum && !tabState[idState].edit && <Injs render={tabState[idState].selection} />}
                 {idState == injsNum && tabState[idState].edit && <CreateInjs render={true} accessToken={props.accessToken} />}
       
-                {idState == termsNum && "Terms"}
+                {idState == termsNum && <Terms render={true} />}
             </div>
         </div>
       </div>
