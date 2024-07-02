@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
+import { HashRouter, Routes, Route, NavLink, Navigate, useNavigate, useParams} from 'react-router-dom'
+import TokenContext from '../contextapi'
+import {createContext, useContext } from 'react';
 
 function Units(props) {
     const [unitNum, setUnitNum] = useState(0);    
     const [units, setUnits] = useState([]);    
-
+    let navigate = useNavigate();
     const [activePage, setActivePage] = useState(1);
     const [perTask, setPerTask] = useState(2); 
     const [amountPaginate, setAmountPaginate] = useState(1); 
+    const {token, setToken} = useContext(TokenContext);
     
     const addPage = () => {
         if (activePage < amountPaginate) {
@@ -58,6 +62,13 @@ function Units(props) {
 
     }
 
+
+    useEffect(() => {
+        if(token === undefined) {
+            navigate("/")
+        }
+    
+    }, [token]);
 
     useEffect(() => {
         GetUnits()

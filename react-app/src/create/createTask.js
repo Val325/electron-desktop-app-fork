@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import TokenContext from '../contextapi'
 import {createContext, useContext } from 'react';
+import { HashRouter, Routes, Route, NavLink, Navigate, useNavigate, useParams} from 'react-router-dom'
 
 function CreateTask(props) {
     //const [id, setId] = useState(0);
@@ -11,6 +12,7 @@ function CreateTask(props) {
     const [deadline, setDeadline] = useState(0); 
     const [deskription, setDeskription] = useState("");
     //const [templ, setTempl] = useState(""); 
+    let navigate = useNavigate();
     
     const [injectID, setInjectID] = useState(0);
     const [unitID, setUnitID] = useState(0);
@@ -35,6 +37,12 @@ function CreateTask(props) {
     useEffect(() => {
         GetTasks()
     }, [props.render])
+
+    useEffect(() => {
+        if(token === undefined) {
+            navigate("/")
+        } 
+    }, [token]);
 
     const TasksCreateButton = () => {
         //console.log("id: ", id)

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { HashRouter, Routes, Route, NavLink, Navigate, useNavigate, useParams} from 'react-router-dom'
 import { Link } from "react-router-dom";
-
+import TokenContext from '../contextapi'
+import {createContext, useContext } from 'react';
 
 function UnitId(props) {
 
@@ -9,6 +10,7 @@ function UnitId(props) {
     const [unit, setUnit] = useState([]);    
     let { id } = useParams();
     let navigate = useNavigate();
+    const {token, setToken} = useContext(TokenContext);
     
     useEffect(() => {
         console.log("reboot page")
@@ -41,6 +43,12 @@ function UnitId(props) {
         });
     }
 
+    useEffect(() => {
+        if(token === undefined) {
+            navigate("/")
+        }
+    
+    }, [token]);
 
     useEffect(() => {
         GetUnit()

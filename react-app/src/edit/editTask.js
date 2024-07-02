@@ -45,7 +45,12 @@ function EditTask(props) {
 
         });
     };
-
+    useEffect(() => {
+        if(token === undefined) {
+            navigate("/")
+        }
+    
+    }, [token]);
     return (
     <div>
         { props.render &&

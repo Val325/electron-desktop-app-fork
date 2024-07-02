@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { HashRouter, Routes, Route, NavLink, Navigate, useNavigate, useParams} from 'react-router-dom'
 import TokenContext from '../contextapi'
 import {createContext, useContext } from 'react';
 function CreateInjs(props) {
@@ -8,7 +9,7 @@ function CreateInjs(props) {
     const [term, setTerm] = useState(0);
     const [code, setCode] = useState("17NF");
     const [statusInj, setStatusInj] = useState("on_server");
-
+    let navigate = useNavigate();
     const {token, setToken} = useContext(TokenContext);
     //const [price, setPrice] = useState(0);
     //const [deadline, setDeadline] = useState(0); 
@@ -38,7 +39,13 @@ function CreateInjs(props) {
     useEffect(() => {
         GetInjs()
     }, [props.render])
-
+    
+    useEffect(() => {
+        if(token === undefined) {
+            navigate("/")
+        } 
+    }, [token]);
+    
     const InjsCreateButton = () => {
         //console.log("id: ", id)
         /*console.log("Name: ", name)

@@ -68,7 +68,12 @@ function Terms(props) {
         GetTasks()
     }, [props.render])
     //                        <button className='button-link'><Link to={"/home/task/" + task.id} >Show task</Link></button>
-
+    useEffect(() => {
+        if(token === undefined) {
+            navigate("/")
+        }
+    
+    }, [token]);
     return (
         <div>
              { 

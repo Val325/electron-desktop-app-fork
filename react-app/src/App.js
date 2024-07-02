@@ -46,7 +46,7 @@ function Auth() {
       body: JSON.stringify(body),
     }).then((response) => {
         if (!response.ok) {
-            navigate("/");
+            //navigate("/");
             //throw new Error('Something went wrong');
             //setSend(false)
             //window.location.replace("/")
@@ -60,20 +60,18 @@ function Auth() {
         if (data !== undefined){
             setToken(data.token)
             setSend(true)
-
+            navigate("/home")
         }
     })
-    navigate("/home")
-  }
-  useEffect(() => {
-    //if (stateSend){
-    //navigate("/home");
-    //}else{
-    //    navigate("/");
-    //}
     
-    //console.log(token)    
-  }, [stateSend])
+  }
+    useEffect(() => {
+        if(token === undefined) {
+            navigate("/")
+        }
+    
+    }, [token]);
+
     return (
     <div className='App'>
       

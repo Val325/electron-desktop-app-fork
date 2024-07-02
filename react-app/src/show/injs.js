@@ -73,7 +73,12 @@ function Injs(props) {
     useEffect(() => {
        GetTasks() 
     }, [isSet])
-
+    useEffect(() => {
+        if(token === undefined) {
+            navigate("/")
+        }
+    
+    }, [token]);
     return (
         <div>
              { 

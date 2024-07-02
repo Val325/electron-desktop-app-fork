@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import TokenContext from '../contextapi'
 import {createContext, useContext } from 'react';
+import { HashRouter, Routes, Route, NavLink, Navigate, useNavigate, useParams} from 'react-router-dom'
+
 function CreateUnit(props) {
     //const [id, setId] = useState(0);
     const [name, setName] = useState("");
@@ -10,6 +12,13 @@ function CreateUnit(props) {
     const [active, setActive] = useState(false); 
     const [task, setTask] = useState(0);
     const {token, setToken} = useContext(TokenContext);
+    let navigate = useNavigate();
+
+    useEffect(() => {
+        if(token === undefined) {
+            navigate("/")
+        } 
+    }, [token]);
    /* 
     const GetTasks = () => {
         const url = "http://localhost:7878/tasks";

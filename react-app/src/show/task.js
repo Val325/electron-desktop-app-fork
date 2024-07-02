@@ -67,7 +67,12 @@ function Task(props) {
     useEffect(() => {
         GetTasks()
     }, [props.render])
-
+    useEffect(() => {
+        if(token === undefined) {
+            navigate("/")
+        }
+    
+    }, [token]);
     return (
         <div>
              { 
