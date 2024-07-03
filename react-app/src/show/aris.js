@@ -67,7 +67,8 @@ function Aris(props) {
     }, [props.render])
     //auth
     useEffect(() => {
-        if(token === undefined) {
+        console.log("token: ", token)
+        if(token === undefined || token === null || token === "") {
             navigate("/")
         }
     

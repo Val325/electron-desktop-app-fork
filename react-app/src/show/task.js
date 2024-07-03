@@ -2,15 +2,17 @@ import React, { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
 import TokenContext from '../contextapi'
 import {createContext, useContext } from 'react';
+import { HashRouter, Routes, Route, NavLink, Navigate, useNavigate, useParams, redirect} from 'react-router-dom'
 
 function Task(props) {
     const [taskNum, setTaskNum] = useState(0);    
     const [tasks, setTasks] = useState([]);    
 
     const [activePage, setActivePage] = useState(1);
-    const [perTask, setPerTask] = useState(4); 
+    const [perTask, setPerTask] = useState(3); 
     const [amountPaginate, setAmountPaginate] = useState(1); 
     const {token, setToken} = useContext(TokenContext);
+    let navigate = useNavigate();
 
     const addPage = () => {
         if (activePage < amountPaginate) {
@@ -50,11 +52,14 @@ function Task(props) {
                 console.log("lenght: ", data.len)
                 console.log("Posts: ", data.list)
                 console.log("First post.id: ", data.list[0].id)
+                
                 setTaskNum(data.len);
-                setTasks(data.list);
+                console.log("taskNum: ", taskNum)
+                setTasks(data.list)
+                console.log("perTask: ", perTask)
                 let numPaginate = Math.ceil(taskNum / perTask);
                 console.log("num paginate: ", numPaginate)
-                setAmountPaginate(numPaginate)
+                setAmountPaginate(numPaginate-1)
               }
         });
     }
@@ -68,7 +73,7 @@ function Task(props) {
         GetTasks()
     }, [props.render])
     useEffect(() => {
-        if(token === undefined) {
+        if(token === undefined || token === null || token === "") {
             navigate("/")
         }
     
@@ -77,7 +82,7 @@ function Task(props) {
         <div>
              { 
               props.render && tasks !== undefined && 
-                tasks.slice(0 + 4 * (activePage-1), 4 + 4 * (activePage-1)).map(task =>
+                tasks.slice(0 + perTask * (activePage), perTask + perTask * (activePage)).map(task =>
                     <div className='Tasks-container' key={task.id}>
                         <p>id: {task.id}</p>
                         <p>{task.title}</p>

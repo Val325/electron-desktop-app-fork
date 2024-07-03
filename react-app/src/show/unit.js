@@ -44,7 +44,7 @@ function UnitId(props) {
     }
 
     useEffect(() => {
-        if(token === undefined) {
+        if(token === undefined || token === null || token === "") {
             navigate("/")
         }
     

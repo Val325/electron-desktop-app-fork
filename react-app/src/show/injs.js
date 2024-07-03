@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
 import TokenContext from '../contextapi'
 import {createContext, useContext } from 'react';
+import { HashRouter, Routes, Route, NavLink, Navigate, useNavigate, useParams, redirect} from 'react-router-dom'
 
 function Injs(props) {
     const [taskNum, setTaskNum] = useState(0);    
@@ -12,7 +13,8 @@ function Injs(props) {
     const [perTask, setPerTask] = useState(3); 
     const [amountPaginate, setAmountPaginate] = useState(1); 
     const {token, setToken} = useContext(TokenContext);
-
+    let navigate = useNavigate();
+    
     const addPage = () => {
         if (activePage < amountPaginate) {
             setActivePage(activePage + 1)
@@ -59,7 +61,7 @@ function Injs(props) {
                 setTasks(data.list);
                 let numPaginate = Math.ceil(taskNum / perTask);
                 console.log("num paginate: ", numPaginate)
-                setAmountPaginate(numPaginate)
+                setAmountPaginate(numPaginate-1)
                 setSend(true)
               }
         });
@@ -74,7 +76,7 @@ function Injs(props) {
        GetTasks() 
     }, [isSet])
     useEffect(() => {
-        if(token === undefined) {
+        if(token === undefined || token === null || token === "") {
             navigate("/")
         }
     

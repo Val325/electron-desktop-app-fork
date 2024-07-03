@@ -60,13 +60,14 @@ function Auth() {
         if (data !== undefined){
             setToken(data.token)
             setSend(true)
-            navigate("/home")
+            navigate("/home")  
         }
     })
+   
     
   }
     useEffect(() => {
-        if(token === undefined) {
+        if(token === undefined || token === null || token === "") {
             navigate("/")
         }
     

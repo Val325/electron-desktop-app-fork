@@ -64,7 +64,7 @@ function TaskId(props) {
         GetTask()
     }, [id])
     useEffect(() => {
-        if(token === undefined) {
+        if(token === undefined || token === null || token === "") {
             navigate("/")
         }
     
