@@ -39,7 +39,7 @@ function CreateTask(props) {
     }, [props.render])
 
     useEffect(() => {
-        if(token === undefined) {
+        if(token === undefined || token === null || token === "") {
             navigate("/")
         } 
     }, [token]);

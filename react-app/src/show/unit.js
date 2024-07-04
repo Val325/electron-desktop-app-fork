@@ -28,11 +28,11 @@ function UnitId(props) {
     }, []) 
 
     const GetUnit = () => {
-        const url = "http://localhost:7878/unit/" + id;
+        const url = "http://localhost:7878/units/" + id;
         fetch(url, {
             method: "GET",
             headers: {
-                'Authorization': 'Bearer 349t4ujh89t4h78349h7',
+                'Authorization': 'Bearer ' + token,
                 'Content-Type': 'text/plain'
             },
         }).then((response) => response.json())

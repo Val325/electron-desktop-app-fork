@@ -46,19 +46,19 @@ function Task(props) {
             }).then((response) => response.json())
             .then((data) => {
               if (data === undefined){
-                console.log("undefined")
+                //console.log("undefined")
               }else{  
                 console.log(data);
-                console.log("lenght: ", data.len)
-                console.log("Posts: ", data.list)
-                console.log("First post.id: ", data.list[0].id)
+                //console.log("lenght: ", data.len)
+                //console.log("Posts: ", data.list)
+                //console.log("First post.id: ", data.list[0].id)
                 
                 setTaskNum(data.len);
-                console.log("taskNum: ", taskNum)
+                //console.log("taskNum: ", taskNum)
                 setTasks(data.list)
-                console.log("perTask: ", perTask)
+                //console.log("perTask: ", perTask)
                 let numPaginate = Math.ceil(taskNum / perTask);
-                console.log("num paginate: ", numPaginate)
+                //console.log("num paginate: ", numPaginate)
                 setAmountPaginate(numPaginate-1)
               }
         });
@@ -71,7 +71,7 @@ function Task(props) {
     }
     useEffect(() => {
         GetTasks()
-    }, [props.render])
+    }, [taskNum])
     useEffect(() => {
         if(token === undefined || token === null || token === "") {
             navigate("/")

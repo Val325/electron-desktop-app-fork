@@ -2,6 +2,7 @@ import TaskId from './show/OneTask'
 import CreateTask from './create/createTask'
 import CreateUnit from './create/createUnit'
 import CreateInjs from './create/createInjs'
+import CreateTerms from './create/createTerms'
 import Injs from './show/injs'
 import Terms from './show/terms'
 import Units from './show/units'
@@ -36,6 +37,8 @@ function Home(props) {
     Selection
   );
   const [idState, setStateId] = useState(0);
+  const [isClickTaskClass, setClickTaskClass] = useState("");
+  const [isClickCreateClass, setClickCreateClass] = useState("");
 /*
   const [isSelectTask, setClickSelectTask] = useState(true);
   const [isSelectStaff, setClickSelectStaff] = useState(false);  
@@ -49,8 +52,7 @@ function Home(props) {
   const [isClickStaffCreate, setClickStaffCreate] = useState(false); 
   const [isClickUnitCreate, setClickUnitCreate] = useState(false); 
 
-  const [isClickTaskClass, setClickTaskClass] = useState("");
-  const [isClickCreateClass, setClickCreateClass] = useState("");
+
 
   const Tasks = () => {
     console.log("Tasks!")
@@ -306,7 +308,16 @@ const BtnSelectionCreateTask = (id) => {
 
 */
 
-
+    useEffect(() => {
+        if (tabState[idState].edit){
+            setClickTaskClass("btn") 
+            setClickCreateClass("select-btn")
+        }else{
+            setClickTaskClass("select-btn")
+            setClickCreateClass("btn")
+        }
+    
+    }, [tabState[idState].edit]);
   return (
     <div>
       
@@ -317,14 +328,14 @@ const BtnSelectionCreateTask = (id) => {
             {<div><button onClick={() => SelectionTab(tab)}>{tab.name}</button></div>}
           </li>
         ))} 
-            
-
-            
+               
+     
+       
         </div>
         <div className='Home-right'>
             <div className='Tasks-staff-create'>
-                <div><button onClick={() => SelectionEditTab(idState)}>Create</button></div>
-                <div><button onClick={() => SelectionShowTab(idState)}>Main</button></div>
+                <div><button className={isClickCreateClass} onClick={() => SelectionEditTab(idState)}>Create</button></div>
+                <div><button className={isClickTaskClass} onClick={() => SelectionShowTab(idState)}>Main</button></div>
             </div>
             <div className='Task-white'>
 
@@ -340,7 +351,8 @@ const BtnSelectionCreateTask = (id) => {
                 {idState == injsNum && !tabState[idState].edit && <Injs render={!tabState[idState].edit} />}
                 {idState == injsNum && tabState[idState].edit && <CreateInjs render={true} accessToken={props.accessToken} />}
       
-                {idState == termsNum && <Terms render={true} />}
+                {idState == termsNum && !tabState[idState].edit && <Terms render={true} />}
+                {idState == termsNum && tabState[idState].edit && <CreateTerms render={true} />}
             </div>
         </div>
       </div>

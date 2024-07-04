@@ -5,7 +5,7 @@ import TokenContext from '../contextapi'
 import {createContext, useContext } from 'react';
 
 function Units(props) {
-    const [unitNum, setUnitNum] = useState(0);    
+    const [unitNum, setUnitNum] = useState(1);    
     const [units, setUnits] = useState([]);    
     let navigate = useNavigate();
     const [activePage, setActivePage] = useState(1);
@@ -35,11 +35,11 @@ function Units(props) {
     };
 
     const GetUnits = () => {
-        const url = "http://localhost:7878/unit";
+        const url = "http://localhost:7878/units";
         fetch(url, {
             method: "GET",
             headers: {
-                'Authorization': 'Bearer 349t4ujh89t4h78349h7',
+                'Authorization': 'Bearer ' + token,
                 'Content-Type': 'text/plain'
             },
             }).then((response) => response.json())
@@ -48,13 +48,15 @@ function Units(props) {
                 console.log("undefined")
               }else{  
                 console.log(data);
-                setUnitNum(data["unit_num"]);
-                setUnits(data["units"]);
+                setUnitNum(data.len);
+                setUnits(data.list);
                 let numPaginate = Math.ceil(unitNum / perTask);
-                console.log("num paginate: ", numPaginate)
+                //console.log("num paginate: ", numPaginate)
                 setAmountPaginate(numPaginate)
-                //setTaskNum(data["task_num"]);
-                //setTasks(data["tasks"]);
+                //console.log("units: ", units)
+                //console.log("first: ", 0 + perTask * (activePage))
+                //console.log("two: ", perTask + perTask * (activePage))
+
               }
 
         });
@@ -72,7 +74,7 @@ function Units(props) {
 
     useEffect(() => {
         GetUnits()
-    }, [props.render])
+    }, [unitNum])
     /*
 
 
@@ -80,8 +82,8 @@ function Units(props) {
     return (
         <div>
              { 
-              props.render && units !== undefined && 
-                units.slice(0 + 2 * (activePage-1), 2 + 2 * (activePage-1)).map(unit =>
+              props.render &&  
+                units.slice(0 + perTask * (activePage-1), perTask + perTask * (activePage-1)).map(unit =>
                     <div className='Tasks-container' key={unit.id}>
                         <p>id: {unit.id}</p>
                         <p>username: {unit.username}</p>

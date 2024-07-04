@@ -8,7 +8,7 @@ function Aris(props) {
     const [taskNum, setTaskNum] = useState(0);    
     const [tasks, setTasks] = useState([]);    
 
-    const [activePage, setActivePage] = useState(1);
+    const [activePage, setActivePage] = useState(0);
     const [perTask, setPerTask] = useState(4); 
     const [amountPaginate, setAmountPaginate] = useState(1); 
     const {token, setToken} = useContext(TokenContext);
@@ -80,7 +80,7 @@ function Aris(props) {
         <div>
              { 
               props.render && tasks !== undefined && 
-                tasks.slice(0 + 4 * (activePage-1), 4 + 4 * (activePage-1)).map(task =>
+                tasks.slice(0 + perTask * (activePage), perTask + perTask * (activePage)).map(task =>
                     <div className='Tasks-container' key={task.id}>
                         <p>id: {task.id}</p>
                         <p>username: {task.username}</p>

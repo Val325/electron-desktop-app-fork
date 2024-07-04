@@ -42,6 +42,7 @@ function Injs(props) {
 
     const GetTasks = () => {
         const url = "http://localhost:7878/injs";
+
         fetch(url, {
             method: "GET",
             headers: {
@@ -51,20 +52,21 @@ function Injs(props) {
             }).then((response) => response.json())
             .then((data) => {
               if (data === undefined){
-                console.log("undefined")
+                //console.log("undefined")
               }else{  
                 console.log(data);
-                console.log("lenght: ", data.len)
-                console.log("Posts: ", data.list)
-                console.log("First post.id: ", data.list[0].id)
+                //console.log("lenght: ", data.len)
+                //console.log("Posts: ", data.list)
+                //console.log("First post.id: ", data.list[0].id)
                 setTaskNum(data.len);
                 setTasks(data.list);
                 let numPaginate = Math.ceil(taskNum / perTask);
-                console.log("num paginate: ", numPaginate)
+                //console.log("num paginate: ", numPaginate)
                 setAmountPaginate(numPaginate-1)
                 setSend(true)
               }
         });
+
     }
 
     const ShowTaskId = () => {

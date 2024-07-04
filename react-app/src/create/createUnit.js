@@ -15,7 +15,7 @@ function CreateUnit(props) {
     let navigate = useNavigate();
 
     useEffect(() => {
-        if(token === undefined) {
+        if(token === undefined || token === null || token === "") {
             navigate("/")
         } 
     }, [token]);
