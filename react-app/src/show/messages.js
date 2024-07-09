@@ -81,7 +81,7 @@ function Messages(props) {
     return (
         <div>
              { 
-              props.render &&  
+              props.render && && tasks !== undefined &&  
                 tasks.map(task =>
                     <div className='Tasks-container' key={task.id}>
                         <p>id: {task.id}</p>
