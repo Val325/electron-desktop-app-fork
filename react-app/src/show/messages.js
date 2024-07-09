@@ -81,14 +81,14 @@ function Messages(props) {
     return (
         <div>
              { 
-              props.render && && tasks !== undefined &&  
+              props.render && tasks !== undefined &&  
                 tasks.map(task =>
                     <div className='Tasks-container' key={task.id}>
                         <p>id: {task.id}</p>
                         <p>time: {task.time}</p>
-                        <p>{task.title}</p>
-                        <p>{task.text}</p>
-                        <p>{task.unit_id}</p>
+                        <p>title: {task.title}</p>
+                        <p>text: {task.text}</p>
+                        <p>unit_id:{task.unit_id}</p>
 
                         <button className='button-link'><Link to={"/home/task/" + task.id} >Show task</Link></button>
                     </div>)
