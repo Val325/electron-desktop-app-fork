@@ -56,9 +56,11 @@ function Auth() {
         return response.json()
     }) 
     .then((data) => {
+
+
         //if (data !== undefined){
         setToken(data.token)
-        setSend(true)
+        setSend(true) 
         //navigate("/home")  
         //}
     })
@@ -72,7 +74,7 @@ function Auth() {
         }
     
     }, [token]);
-
+    //
     return (
     <div className='App'>
       

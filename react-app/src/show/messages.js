@@ -57,9 +57,9 @@ function Messages(props) {
                 //console.log("taskNum: ", taskNum)
                 setTasks(data.list)
                 //console.log("perTask: ", perTask)
-                let numPaginate = Math.ceil(taskNum / perTask);
+                //let numPaginate = Math.ceil(taskNum / perTask);
                 //console.log("num paginate: ", numPaginate)
-                setAmountPaginate(numPaginate-1)
+                //setAmountPaginate(numPaginate-1)
               }
         });
     }
@@ -82,7 +82,7 @@ function Messages(props) {
         <div>
              { 
               props.render &&  
-                tasks.slice(0 + perTask * (activePage-1), perTask + perTask * (activePage-1)).map(task =>
+                tasks.map(task =>
                     <div className='Tasks-container' key={task.id}>
                         <p>id: {task.id}</p>
                         <p>time: {task.time}</p>
