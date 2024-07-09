@@ -79,8 +79,8 @@ function Terms(props) {
     return (
         <div>
              { 
-              props.render && tasks !== undefined && 
-                tasks.slice(0 + 4 * (activePage-1), 4 + 4 * (activePage-1)).map(task =>
+              props.render &&  
+                tasks.slice(0 + perTask * (activePage-1), perTask + perTask * (activePage-1)).map(task =>
                     <div className='Tasks-container' key={task.id}>
                         <p>id term: {task.id}</p>
 

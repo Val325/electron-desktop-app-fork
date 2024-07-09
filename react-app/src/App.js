@@ -37,7 +37,7 @@ function Auth() {
     }; 
 
 
-
+    //two fetch
     fetch(url, {
       method: "POST",
       headers: {
@@ -45,30 +45,57 @@ function Auth() {
       },
       body: JSON.stringify(body),
     }).then((response) => {
-        if (!response.ok) {
+        //if (!response.ok) {
             //navigate("/");
             //throw new Error('Something went wrong');
             //setSend(false)
             //window.location.replace("/")
             //document.location.href = '/'
             //redirect("/");
-        }
+        //}
         //console.log(response)
         return response.json()
     }) 
     .then((data) => {
-        if (data !== undefined){
-            setToken(data.token)
-            setSend(true)
-            navigate("/home")  
-        }
+        //if (data !== undefined){
+        setToken(data.token)
+        setSend(true)
+        //navigate("/home")  
+        //}
     })
-   
-    
+    if(token === undefined || token === null || token === "") {
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(body),
+    }).then((response) => {
+        //if (!response.ok) {
+            //navigate("/");
+            //throw new Error('Something went wrong');
+            //setSend(false)
+            //window.location.replace("/")
+            //document.location.href = '/'
+            //redirect("/");
+        //}
+        //console.log(response)
+        return response.json()
+    }) 
+    .then((data) => {
+        //if (data !== undefined){
+        setToken(data.token)
+        setSend(true)
+        //navigate("/home")  
+        //}
+    }) 
+    } 
   }
     useEffect(() => {
         if(token === undefined || token === null || token === "") {
             navigate("/")
+        }else{
+            navigate("/home")
         }
     
     }, [token]);

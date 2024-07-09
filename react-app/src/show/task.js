@@ -81,8 +81,8 @@ function Task(props) {
     return (
         <div>
              { 
-              props.render && tasks !== undefined && 
-                tasks.slice(0 + perTask * (activePage), perTask + perTask * (activePage)).map(task =>
+              props.render &&  
+                tasks.slice(0 + perTask * (activePage-1), perTask + perTask * (activePage-1)).map(task =>
                     <div className='Tasks-container' key={task.id}>
                         <p>id: {task.id}</p>
                         <p>{task.title}</p>

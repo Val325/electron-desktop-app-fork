@@ -83,11 +83,18 @@ function Injs(props) {
         }
     
     }, [token]);
+    //.slice(0 + perTask * (activePage), perTask + perTask * (activePage))
     return (
         <div>
-             { 
-              props.render && tasks !== undefined && 
-                tasks.slice(0 + perTask * (activePage), perTask + perTask * (activePage)).map(task =>
+            {
+                console.log("tasks ", tasks)
+            }
+            {
+                console.log("task.id", tasks[0])
+            }
+             {
+              props.render &&  
+                tasks.slice(0 + perTask * (activePage-1), perTask + perTask * (activePage-1)).map(task =>
                     <div className='Tasks-container' key={task.id}>
                         <p>id: {task.id}</p>
                         <p>time: {task.time}</p>
