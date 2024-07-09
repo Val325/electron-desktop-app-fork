@@ -8,6 +8,7 @@ import Terms from './show/terms'
 import Units from './show/units'
 import Aris from './show/aris'
 import Task from './show/task'
+import Messages from './show/messages'
 import { HashRouter, Routes, Route, NavLink, Navigate, useNavigate, useParams} from 'react-router-dom'
 import React, { useEffect, useState } from 'react'
 
@@ -17,6 +18,7 @@ let Selection = [
   { id: 2, name: 'Tasks', selection: false, edit: false},
   { id: 3, name: 'Injs', selection: false, edit: false},
   { id: 4, name: 'Terms', selection: false, edit: false},
+  { id: 5, name: 'Messages', selection: false, edit: false}
 ];
 
 
@@ -26,6 +28,8 @@ const unitsNum = 1
 const tasksNum = 2
 const injsNum = 3
 const termsNum = 4
+const msgNum = 5
+
 /*
 let SelectionChangeData = [
   { id: 0, create: false, edit: false},
@@ -353,6 +357,7 @@ const BtnSelectionCreateTask = (id) => {
       
                 {idState == termsNum && !tabState[idState].edit && <Terms render={true} />}
                 {idState == termsNum && tabState[idState].edit && <CreateTerms render={true} />}
+                {idState == msgNum && <Messages render={true} />}
             </div>
         </div>
       </div>
