@@ -25,7 +25,7 @@ function Auth() {
   const {token, setToken} = useContext(TokenContext);
   let navigate = useNavigate();
 
-  const handleLogin = () => {
+   const handleLogin = async () => {
     // Здесь можно добавить логику для проверки логина и пароля
     console.log('Username:', usernameStat);
     console.log('Password:', passwordStat);
@@ -37,7 +37,7 @@ function Auth() {
     }; 
 
 
-    fetch(url, {
+    /*fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -63,16 +63,24 @@ function Auth() {
         setSend(true) 
         //navigate("/home")  
         //}
+    })*/
+    let response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(body),
     })
-
+    let result = await response.json();
+    setToken(result.token)
+    setSend(true)
   }
     useEffect(() => {
         if(token === undefined || token === null || token === "") {
             navigate("/")
         }else{
             navigate("/home")
-        }
-    
+        }    
     }, [token]);
     //
     return (
@@ -80,7 +88,7 @@ function Auth() {
       
       <header className='App-header'>
         <h1>Application Name</h1>
-        <form onSubmit={handleLogin}>
+        <form onClick={handleLogin}>
           <div>
             <input
               type='text'
@@ -99,7 +107,7 @@ function Auth() {
               placeholder='Password'
             />
           </div>
-          <button type='submit'>Login</button>
+          <button type='button'>Login</button>
         </form>
       </header>
     </div>
