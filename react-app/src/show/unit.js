@@ -3,11 +3,14 @@ import { HashRouter, Routes, Route, NavLink, Navigate, useNavigate, useParams} f
 import { Link } from "react-router-dom";
 import TokenContext from '../contextapi'
 import {createContext, useContext } from 'react';
+import CreateMsg from '../create/createMsg.js'
 
 function UnitId(props) {
 
     //const [taskId, setTaskNum] = useState(0);    
-    const [unit, setUnit] = useState([]);    
+    const [unit, setUnit] = useState([]);
+    const [btnmsg, setBtnmsg] = useState(false);    
+
     let { id } = useParams();
     let navigate = useNavigate();
     const {token, setToken} = useContext(TokenContext);
@@ -42,7 +45,12 @@ function UnitId(props) {
             //setTask(data)
         });
     }
+    const MsgUnit = () => {
+        setBtnmsg(!btnmsg)
+        console.log("dsdfds: ", btnmsg)
+        {btnmsg &&  <CreateMsg idunit={id} />}
 
+    }
     useEffect(() => {
         if(token === undefined || token === null || token === "") {
             navigate("/")
@@ -74,13 +82,14 @@ function UnitId(props) {
                         <p>username: {unit.username}</p>
                         <p>email: {unit.email}</p>
                         <p>bio: {unit.bio}</p>
-                        <p>task: {unit.task}</p>
                         <p>active: {unit.active ? "true" : "false"}</p>
                     </div>                
               }
               <div className='buttons-link'>
                 <Link to={"/home/"} ><button className='button-link'>Back</button></Link>
+                <button onClick={MsgUnit} className='button-msg'>Message</button>
               </div>
+                {btnmsg &&  <CreateMsg render={true} idunit={id} />}
             </div>
         </div>
       </div>

@@ -89,7 +89,6 @@ function Units(props) {
                         <p>username: {unit.username}</p>
                         <p>email: {unit.email}</p>
                         <p>bio: {unit.bio}</p>
-                        <p>task: {unit.task}</p>
                         <p>active: {unit.active ? "true" : "false"}</p>
                         <button className='button-link'><Link to={"/home/unit/" + unit.id} >Show task</Link></button>
                     </div>)                
